@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6448542749669764619}
   - component: {fileID: 4353361333625978706}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotForce: 10
-  enemyBullet: 0
-  playerbullet: 1
+  enemyBullet: 1
+  playerbullet: 0
 --- !u!50 &4353361333625978706
 Rigidbody2D:
   serializedVersion: 4

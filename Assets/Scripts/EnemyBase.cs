@@ -16,44 +16,42 @@ public class EnemyBase : MonoBehaviour
     {
         if (GameManager.Instance.enemyTurn)
         {
-            isEnemyTurn = true;
-            if (isEnemyTurn)
-            {
-                DoAction();
-                isEnemyTurn = false;
-            }
+            
         }
 
         if (GameManager.Instance.playerTurn)
         {
-            enemyActions = maxEnemyActions;
+            
         }
     }
 
     public void DoAction()
     {
-        if(enemyActions > 0)
+        if (GameManager.Instance.enemyTurn)
         {
-            int rnd = Random.Range(0, enemyAbilitiesCount - 1);
-            switch (rnd)
+            if (enemyActions > 0)
             {
-                case 0:
-                    Move();
-                    break;
-                case 1:
-                    Rotate();
-                    break;
-                case 2:
-                    Shot();
-                    break;
+                int rnd = Random.Range(0, enemyAbilitiesCount);
+                switch (rnd)
+                {
+                    case 0:
+                        Move();
+                        break;
+                    case 1:
+                        Rotate();
+                        break;
+                    case 2:
+                        Shot();
+                        break;
+                }
+
+                enemyActions -= 1;
+                GameManager.Instance.maxEnemyActions -= 1;
+                Invoke("DoAction", 0.2f);
+
             }
-
-            enemyActions -= 1;
-            Invoke("DoAction", 0.2f);
-
         }
-        
-       
+   
     }
 
     public void Move()
@@ -79,7 +77,16 @@ public class EnemyBase : MonoBehaviour
 
     public void Rotate()
     {
-        transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 90f);
+        int rnd = Random.Range(0, 1);
+
+        if (rnd == 0)
+        {
+            transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 90f);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90f);
+        }
     }
 
     public void Shot()

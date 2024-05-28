@@ -6,7 +6,8 @@ public class PlayerStats : MonoBehaviour
 {
     public int playerMaxHp;
     public int playerCurrentHp;
-    public int playerActions;
+    public int playerMaxActions;
+    public int playerCurrentActions;
 
     public static PlayerStats Instance;
 
@@ -34,11 +35,11 @@ public class PlayerStats : MonoBehaviour
 
     public void UseAction(int actionCost)
     {
-        playerActions -= actionCost;
+        playerCurrentActions -= actionCost;
     }
 
     public void SetMaxActions(int maxActions)
     {
-        playerActions = maxActions;
+        playerCurrentActions = maxActions;
     }
 }
