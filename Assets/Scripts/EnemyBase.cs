@@ -9,8 +9,19 @@ public class EnemyBase : MonoBehaviour
     public int enemyActions;
     public int maxEnemyActions;
     public int enemyAbilitiesCount;
+    public bool isCounted;
+
     public GameObject shotPoint;
     public GameObject bullet;
+    public GameObject explosion;
+
+    private void Start()
+    {
+        var pos = transform.position;
+
+        pos.x = Mathf.Clamp(transform.position.x, -9.49f, -0.5f);
+        pos.y = Mathf.Clamp(transform.position.y, 0.49f, 9.49f);
+    }
 
     private void Update()
     {
@@ -23,6 +34,8 @@ public class EnemyBase : MonoBehaviour
         {
             
         }
+
+        
     }
 
     public void DoAction()
@@ -50,9 +63,12 @@ public class EnemyBase : MonoBehaviour
                 Invoke("DoAction", 0.2f);
 
             }
+
+            
         }
    
     }
+
 
     public void Move()
     {
@@ -92,5 +108,15 @@ public class EnemyBase : MonoBehaviour
     public void Shot()
     {
         Instantiate(bullet, shotPoint.transform.position, shotPoint.transform.rotation);
+    }
+
+    public void GetHit(int damage)
+    {
+        
+        var explosionPrefab = Instantiate(explosion, transform.position, transform.rotation);
+        Destroy(explosionPrefab, 0.2f);
+        GameManager.Instance.enemies.Remove(gameObject);
+        Destroy(gameObject, 0.2f);
+
     }
 }

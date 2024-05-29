@@ -11,10 +11,14 @@ public class UIScript : MonoBehaviour
 
     public Button endTurnButton;
 
+    public GameObject deckPanel;
+
     private void Start()
     {
         yourTurn.enabled = false;
         enemiesTurn.enabled = false;
+
+        deckPanel.SetActive(false);
     }
 
     private void Update()
@@ -25,6 +29,7 @@ public class UIScript : MonoBehaviour
             enemiesTurn.enabled = false;
             endTurnButton.interactable = true;
 
+
         }
         else if (GameManager.Instance.enemyTurn)
         {
@@ -32,6 +37,31 @@ public class UIScript : MonoBehaviour
             yourTurn.enabled = false;
             endTurnButton.interactable = false;
 
+        }
+
+        if (GameManager.Instance.playerTurn)
+        {
+            foreach(var button in GameManager.Instance.buttonSlots)
+            {
+                ButtonSlot buttonSlot = button.GetComponent<ButtonSlot>();
+                if (!buttonSlot.eqquipedButton)
+                {
+                    endTurnButton.interactable = false;
+                }
+                
+            }
+        }
+    }
+
+    public void DeckPanel()
+    {
+        if (deckPanel.activeSelf)
+        {
+            deckPanel.SetActive(false);
+        }
+        else if (!deckPanel.activeSelf)
+        {
+            deckPanel.SetActive(true);
         }
     }
 }

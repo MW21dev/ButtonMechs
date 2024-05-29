@@ -150,6 +150,8 @@ MonoBehaviour:
   playerCurrentHp: 0
   playerMaxActions: 0
   playerCurrentActions: 0
+  playerDamage: 0
+  explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
 --- !u!58 &7137712301970340191
 CircleCollider2D:
   m_ObjectHideFlags: 0

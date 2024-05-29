@@ -7,7 +7,24 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
 {
     public int maxChildCount;
 
+    public bool empty;
+
     public GameObject eqquipedButton;
+
+    public void Update()
+    {
+        if(transform.childCount > 0)
+        {
+            eqquipedButton = transform.GetChild(0).gameObject;
+            empty = false;
+        }
+        else
+        {
+            eqquipedButton = null;
+            empty = true;
+        }
+
+    }
 
     public void OnDrop(PointerEventData eventData)
     {

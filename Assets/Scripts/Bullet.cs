@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float shotForce = 10f;
+    public int damage;
     Rigidbody2D rb;
 
     public bool enemyBullet;
@@ -26,14 +27,17 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && playerbullet)
         {
-            GameManager.Instance.enemies.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
+            EnemyBase enemyBase = collision.gameObject.GetComponent<EnemyBase>();
+            damage = PlayerStats.Instance.playerDamage;
+            enemyBase.GetHit(damage);
             Destroy(gameObject);
         }
         
         if (collision.gameObject.CompareTag("Player") && enemyBullet)
         {
-            collision.gameObject.SetActive(false);
+            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+            
+            playerStats.GetHit(0);
             Destroy(gameObject);
         }
 

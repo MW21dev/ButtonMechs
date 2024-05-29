@@ -47,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
         var pos = transform.position;
 
-        pos.x = Mathf.Clamp(transform.position.x, -9.49f, 0.6f);
-        pos.y = Mathf.Clamp(transform.position.y, 0.5f, 9.49f);
+        pos.x = Mathf.Clamp(transform.position.x, -9.49f, -0.5f);
+        pos.y = Mathf.Clamp(transform.position.y, 0.49f, 9.49f);
 
         
 

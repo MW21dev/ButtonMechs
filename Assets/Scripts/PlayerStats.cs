@@ -8,9 +8,11 @@ public class PlayerStats : MonoBehaviour
     public int playerCurrentHp;
     public int playerMaxActions;
     public int playerCurrentActions;
+    public int playerDamage;
 
     public static PlayerStats Instance;
 
+    public GameObject explosion;
     private void Awake()
     {
         if(Instance == null)
@@ -31,6 +33,9 @@ public class PlayerStats : MonoBehaviour
     public void GetHit(int recievedDmg)
     {
         playerCurrentHp -= recievedDmg;
+        var explosionPrefab = Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(explosionPrefab, 0.2f);
+        gameObject.SetActive(false);
     }
 
     public void UseAction(int actionCost)
