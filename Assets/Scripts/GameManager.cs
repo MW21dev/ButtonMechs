@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 	public GameObject[] buttonSlots;
 	public GameObject[] bulbs;
 
+	public GameObject[] allAbilityButtons;
+
 	public List<GameObject> enemies;
 	public List<AbilityButtonScript> deck;
 	public List<GameObject> inventory;

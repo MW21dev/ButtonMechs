@@ -56,6 +56,11 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 		}
 	}
 
+    public virtual void UseMenuAbility()
+    {
+
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         timeLeft = timeToWait;

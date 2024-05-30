@@ -38,7 +38,7 @@ public class EnemyBase : MonoBehaviour
         
     }
 
-    public void DoAction()
+    public virtual void DoAction()
     {
         if (GameManager.Instance.enemyTurn)
         {
