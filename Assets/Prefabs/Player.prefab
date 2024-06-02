@@ -146,11 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73912ba6345ac949a28f75540ba4d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHp: 0
+  playerMaxHp: 3
   playerCurrentHp: 0
   playerMaxActions: 0
   playerCurrentActions: 0
   playerDamage: 0
+  playerCurrentMoney: 3
+  isDead: 0
   explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
 --- !u!58 &7137712301970340191
 CircleCollider2D:

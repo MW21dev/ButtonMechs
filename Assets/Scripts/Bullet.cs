@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
         {
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
             
-            playerStats.GetHit(0);
+            playerStats.GetHit(1);
             Destroy(gameObject);
         }
 

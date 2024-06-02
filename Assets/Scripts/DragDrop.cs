@@ -9,6 +9,7 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 	
 	public Image image;
 	public Transform parentAfterDrag;
+	public Transform previousParent;
 	private CanvasGroup canvasGroup;
 
 	public bool draggable = true;
@@ -31,6 +32,7 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
         }
+
     }
 		
 	

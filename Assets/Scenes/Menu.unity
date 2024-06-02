@@ -1092,6 +1092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuUseButtonSlot: {fileID: 1715676029}
   useButton: {fileID: 3305754994592502970}
+  defaultGreen: {r: 0, g: 0, b: 0, a: 0}
 --- !u!224 &356693884913971320
 RectTransform:
   m_ObjectHideFlags: 0

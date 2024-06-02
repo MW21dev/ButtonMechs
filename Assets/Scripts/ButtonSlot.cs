@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,6 +17,8 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
         if(transform.childCount > 0)
         {
             eqquipedButton = transform.GetChild(0).gameObject;
+            DragDrop e = eqquipedButton.GetComponent<DragDrop>();
+            e.previousParent = transform;
             empty = false;
         }
         else
@@ -35,7 +38,27 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
             dragDropButton.parentAfterDrag = transform;
 
             eqquipedButton = dropped;
+            
+        }
+
+        
+        if(!empty)
+        {
+
+
+            GameObject dropped = eventData.pointerDrag;
+            DragDrop dragDropButton = dropped.GetComponent<DragDrop>();
+            dragDropButton.parentAfterDrag = transform;
+
+            DragDrop eqquipedbuttonDrag = eqquipedButton.GetComponent<DragDrop>();
+            eqquipedbuttonDrag.transform.SetParent(dragDropButton.previousParent);
+
+
+            eqquipedButton = dropped;
         }
         
+        
     }
+
+
 }

@@ -1,7 +1,9 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
@@ -9,9 +11,9 @@ using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
-	
 	public GameObject[] buttonSlots;
 	public GameObject[] bulbs;
 
@@ -19,14 +21,17 @@ public class GameManager : MonoBehaviour
 
 	public List<GameObject> enemies;
 	public List<AbilityButtonScript> deck;
+	public List<AbilityButtonScript> startDeck;
 	public List<GameObject> inventory;
 
+	public TMP_Text deckCountText;
 
 	public static GameManager Instance;
 
 	public Image raycastBlock;
 
 	public GameObject deckList;
+	public int deckCount;
 
 	public Sprite bulbOn;
 	public Sprite bulbOff;
@@ -57,6 +62,9 @@ public class GameManager : MonoBehaviour
 		enemyTurn = false;
 
 		raycastBlock.enabled = false;
+
+		CreateStartDeck();
+		UpdateDeck();
 	}
 
 	private void Update()
@@ -88,6 +96,8 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		deckCount = deck.Count;
+		deckCountText.text = deckCount.ToString();
 		
 	}
 
@@ -116,7 +126,7 @@ public class GameManager : MonoBehaviour
 
 	public void EndEnemyTurn()
 	{
-		Invoke("StartTurn", 1.5f);
+		Invoke("StartTurn", 1f);
 	}
 
    
@@ -171,13 +181,36 @@ public class GameManager : MonoBehaviour
 		
 		if(enemies.Count > 0)
 		{
-			Invoke("StartEnemyTurn", 2f);
+			Invoke("StartEnemyTurn", 1f);
 		} 
 	}
 
 	public void DrawButton(int drawCount)
 	{
-        StartCoroutine(DrawingButtons(drawCount));
+		StartCoroutine(DrawingButtons(drawCount));
+		UpdateDeck();
+	}
+
+	public void CreateStartDeck()
+	{
+		foreach(var button in startDeck)
+		{
+			var newButton = Instantiate(button, deckList.transform);
+			newButton.transform.SetParent(deckList.transform);
+		}
+	}
+
+	public void UpdateDeck()
+	{
+		int childnum = deckList.transform.childCount;
+
+		deck.Clear();
+
+		for (int i = 0; i < childnum; i++)
+		{
+			AbilityButtonScript button = deckList.transform.GetChild(i).GetComponent<AbilityButtonScript>();
+			deck.Add(button);
+		}
 	}
 
 	IEnumerator DrawingButtons(int drawCount)
@@ -237,7 +270,7 @@ public class GameManager : MonoBehaviour
 			{
                 enemyBase.DoAction();
 
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
             }
 		}
 	}

@@ -9,6 +9,8 @@ public class PlayerStats : MonoBehaviour
     public int playerMaxActions;
     public int playerCurrentActions;
     public int playerDamage;
+    public int playerCurrentMoney;
+    public bool isDead;
 
     public static PlayerStats Instance;
 
@@ -25,9 +27,18 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void SetMaxHealth(int maxHp)
+    private void Start()
     {
-        playerMaxHp = maxHp;
+        Invoke("SetHealth", 0.2f);
+
+       
+    }
+
+    public void SetHealth()
+    {
+        playerCurrentHp = playerMaxHp;
+        UIScript.Instance.ChangeHp(playerCurrentHp);
+
     }
 
     public void GetHit(int recievedDmg)
@@ -35,7 +46,8 @@ public class PlayerStats : MonoBehaviour
         playerCurrentHp -= recievedDmg;
         var explosionPrefab = Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(explosionPrefab, 0.2f);
-        gameObject.SetActive(false);
+        UIScript.Instance.ChangeHp(playerCurrentHp);
+
     }
 
     public void UseAction(int actionCost)
@@ -46,5 +58,9 @@ public class PlayerStats : MonoBehaviour
     public void SetMaxActions(int maxActions)
     {
         playerCurrentActions = maxActions;
+    }
+    public void Dead(bool isDead)
+    {
+
     }
 }
