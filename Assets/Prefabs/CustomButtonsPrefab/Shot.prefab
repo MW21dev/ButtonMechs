@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   parentAfterDrag: {fileID: 0}
+  previousParent: {fileID: 0}
   draggable: 1
 --- !u!114 &-5981184457477366035
 MonoBehaviour:
@@ -126,6 +127,7 @@ MonoBehaviour:
   timeToWait: 0.5
   abilityUsed: 0
   abilityName: Shot
+  abilityPrice: 3
   abilityDescription: Shot forward
   bullet: {fileID: 3764961782599655993, guid: 99d0bbe80e7b45a499056ef9d6b0628f, type: 3}
   shotPoint: {fileID: 0}

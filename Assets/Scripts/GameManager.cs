@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject[] allAbilityButtons;
 
+	public GameObject[] shopButtons;
+
 	public List<GameObject> enemies;
 	public List<AbilityButtonScript> deck;
 	public List<AbilityButtonScript> startDeck;
@@ -30,6 +32,8 @@ public class GameManager : MonoBehaviour
 
 	public Image raycastBlock;
 
+
+	public GameObject shopPanel;
 	public GameObject deckList;
 	public int deckCount;
 
@@ -38,6 +42,7 @@ public class GameManager : MonoBehaviour
 
 	public bool playerTurn;
 	public bool enemyTurn;
+	public bool shopTurn;
 
 	public int maxEnemyActions;
 
@@ -98,6 +103,7 @@ public class GameManager : MonoBehaviour
 
 		deckCount = deck.Count;
 		deckCountText.text = deckCount.ToString();
+
 		
 	}
 
@@ -137,6 +143,12 @@ public class GameManager : MonoBehaviour
 
 		slot = buttonSlots[buttonNumber].GetComponent<ButtonSlot>();
 		var ability = slot.eqquipedButton.GetComponent<AbilityButtonScript>();
+
+		foreach (var button in GameObject.FindGameObjectsWithTag("Button"))
+			{
+				DragDrop dragDrop = button.GetComponent<DragDrop>();
+				dragDrop.draggable = false;
+			}
 
 		ability.UseAbility(PlayerStats.Instance);
 	}

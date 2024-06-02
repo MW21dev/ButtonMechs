@@ -11,6 +11,7 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 	public Image image;
 	public GameObject abilityText;
 	public TMP_Text description;
+    
 
     public bool isHovering = false;
     public float timeToWait = 0.5f;
@@ -19,6 +20,7 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 	public bool abilityUsed;
 
 	public string abilityName;
+    public int abilityPrice;
 
 	[TextArea]
 	public string abilityDescription;

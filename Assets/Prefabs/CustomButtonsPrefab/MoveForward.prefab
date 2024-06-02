@@ -240,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   parentAfterDrag: {fileID: 0}
+  previousParent: {fileID: 0}
   draggable: 1
 --- !u!114 &-8683223304193182536
 MonoBehaviour:
@@ -260,6 +261,7 @@ MonoBehaviour:
   timeToWait: 0.5
   abilityUsed: 0
   abilityName: Move Forward
+  abilityPrice: 1
   abilityDescription: Move your tank forward
 --- !u!50 &2192560087069718184
 Rigidbody2D:

@@ -35,9 +35,14 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
         {
             GameObject dropped = eventData.pointerDrag;
             DragDrop dragDropButton = dropped.GetComponent<DragDrop>();
-            dragDropButton.parentAfterDrag = transform;
+            
+            if (dragDropButton.draggable)
+            {
+                dragDropButton.parentAfterDrag = transform;
 
-            eqquipedButton = dropped;
+                eqquipedButton = dropped;
+            }
+            
             
         }
 
@@ -51,10 +56,14 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
             dragDropButton.parentAfterDrag = transform;
 
             DragDrop eqquipedbuttonDrag = eqquipedButton.GetComponent<DragDrop>();
-            eqquipedbuttonDrag.transform.SetParent(dragDropButton.previousParent);
 
+            if (eqquipedbuttonDrag.draggable)
+            {
+                eqquipedbuttonDrag.transform.SetParent(dragDropButton.previousParent);
 
-            eqquipedButton = dropped;
+                eqquipedButton = dropped;
+            }
+            
         }
         
         
