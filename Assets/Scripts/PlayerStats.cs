@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats Instance;
 
     public GameObject explosion;
+
     private void Awake()
     {
         if(Instance == null)
@@ -34,6 +37,8 @@ public class PlayerStats : MonoBehaviour
        
     }
 
+    
+
     public void SetHealth()
     {
         playerCurrentHp = playerMaxHp;
@@ -47,6 +52,13 @@ public class PlayerStats : MonoBehaviour
         var explosionPrefab = Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(explosionPrefab, 0.2f);
         UIScript.Instance.ChangeHp(playerCurrentHp);
+        
+        if(playerCurrentHp == 0)
+        {
+            Invoke("Dead", 0.1f);
+        }
+
+        
 
     }
 
@@ -59,8 +71,8 @@ public class PlayerStats : MonoBehaviour
     {
         playerCurrentActions = maxActions;
     }
-    public void Dead(bool isDead)
+    public void Dead()
     {
-
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }
