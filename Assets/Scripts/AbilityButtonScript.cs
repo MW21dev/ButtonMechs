@@ -18,12 +18,26 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
     float timeLeft;
 
 	public bool abilityUsed;
+    
 
 	public string abilityName;
     public int abilityPrice;
 
 	[TextArea]
 	public string abilityDescription;
+
+    public enum Category
+    {
+        starter,
+        normal,
+        chrome,
+        silver,
+        gold,
+        rainbow,
+        poker,
+    }
+
+    public Category type;
 
     private void Start()
     {
@@ -46,6 +60,8 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
         {
             abilityText.SetActive(false);
         }
+
+        
     }
 
     public virtual void UseAbility(PlayerStats player)

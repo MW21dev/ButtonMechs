@@ -77,7 +77,7 @@ public class ShopSlot : ButtonSlot
 
     public void BuyButton()
     {
-        eqquipedButton.transform.SetParent(GameManager.Instance.deckList.transform, false);
+        eqquipedButton.transform.SetParent(GameManager.Instance.deck.transform, false);
         PlayerStats.Instance.playerCurrentMoney -= eqquipedButton.gameObject.GetComponent<AbilityButtonScript>().abilityPrice;
         GameManager.Instance.UpdateDeck();
 

@@ -104,8 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826e30db556240448b85df447d8767b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  imageBody: {fileID: 1780542084713535103}
+  imageIcon: {fileID: 1780542084713535103}
   parentAfterDrag: {fileID: 0}
+  previousParent: {fileID: 0}
   draggable: 1
 --- !u!50 &8378260692058156921
 Rigidbody2D:
@@ -153,7 +155,9 @@ MonoBehaviour:
   timeToWait: 0.5
   abilityUsed: 0
   abilityName: MenuPlay
+  abilityPrice: 0
   abilityDescription: Start new Game
+  type: 0
 --- !u!1 &3788115724681319180
 GameObject:
   m_ObjectHideFlags: 0

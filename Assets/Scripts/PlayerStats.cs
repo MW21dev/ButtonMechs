@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     public int playerCurrentActions;
     public int playerDamage;
     public int playerCurrentMoney;
+    public int drawCount = 1;
     public bool isDead;
 
     public static PlayerStats Instance;

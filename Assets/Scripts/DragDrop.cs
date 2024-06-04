@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 	
-	public Image image;
+	public Image imageBody;
+	public Image imageIcon;
 	public Transform parentAfterDrag;
 	public Transform previousParent;
 	private CanvasGroup canvasGroup;
@@ -18,7 +19,6 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 	private void Awake()
 	{
 		canvasGroup = GetComponent<CanvasGroup>();
-		image = GetComponent<Image>();
 	}
 
 	public void OnBeginDrag(PointerEventData eventData)
@@ -27,7 +27,8 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 		{
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
-            image.raycastTarget = false;
+            imageBody.raycastTarget = false;
+			imageIcon.raycastTarget = false;
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
@@ -52,10 +53,11 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
             transform.SetParent(parentAfterDrag);
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;
-            image.raycastTarget = true;
+            imageBody.raycastTarget = true;
+			imageIcon.raycastTarget = true;
         }
-		
-	}
+
+    }
 
 
 }

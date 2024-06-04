@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6700020463739037018}
   - component: {fileID: -6913543907383757451}
   m_Layer: 5
-  m_Name: RotateLeft
+  m_Name: StarterRotateLeft
   m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,8 +100,10 @@ MonoBehaviour:
   abilityUsed: 0
   abilityName: Rotate Left
   abilityPrice: 2
-  abilityDescription: Rotate your tank left
-  type: 1
+  abilityDescription: 'Rotate your tank left
+
+    (Can''t be destored)'
+  type: 0
   right: 0
   left: 1
 --- !u!50 &-6913543907383757451
@@ -406,7 +408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 301938033, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
+  m_Sprite: {fileID: -2111382689, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -10,6 +10,8 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
 
     public bool empty;
 
+    public bool isDiscard;
+
     public GameObject eqquipedButton;
 
     public void Update()
@@ -31,6 +33,8 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+        
+        
         if(transform.childCount < maxChildCount)
         {
             GameObject dropped = eventData.pointerDrag;

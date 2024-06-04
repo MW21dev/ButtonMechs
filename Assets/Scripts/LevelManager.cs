@@ -79,7 +79,7 @@ public class LevelManager : MonoBehaviour
 
         if(GameManager.Instance.enemies.Count <= 0 && levelLoadingTime == 0)
         {
-            EndLevel();
+            Invoke("EndLevel", 0.5f);
         }
     }
 
@@ -87,6 +87,7 @@ public class LevelManager : MonoBehaviour
     public void LaunchLevel()
     {
         StartCoroutine(SetMap());
+        
         levelLoadingTime = 5f;
     }
 
@@ -114,7 +115,7 @@ public class LevelManager : MonoBehaviour
         shopPanel.GetComponent<CanvasGroup>().alpha = 0f;
         shopPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
         whiteMapCover.SetActive(false);
-        
+
         stage = levelStage.level;
         levelLoadingTime = 5f;
         isInShop = false;
@@ -136,7 +137,7 @@ public class LevelManager : MonoBehaviour
                 GameManager.Instance.CountEnemies();
             }
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }

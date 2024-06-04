@@ -9,13 +9,41 @@ public class DiscardSlot : ButtonSlot, IDropHandler
     {
         if(eqquipedButton != null)
         {
-            Invoke("DiscardButton", 0.1f);
+            if(eqquipedButton.GetComponent<AbilityButtonScript>().type == AbilityButtonScript.Category.starter)
+            {
+                eqquipedButton.gameObject.transform.SetParent(eqquipedButton.GetComponent<DragDrop>().previousParent, false);
+            }
+            else
+            {
+                Invoke("DiscardButton", 0.1f);
+            }
+            
+        }
+
+        if (transform.childCount > 0)
+        {
+            eqquipedButton = transform.GetChild(0).gameObject;
+            empty = false;
+        }
+        else
+        {
+            eqquipedButton = null;
+            empty = true;
         }
     }
 
     private void DiscardButton()
     {
-        var buttonToDiscard = eqquipedButton.gameObject;
-        Destroy(buttonToDiscard);
+        var discardedButton = eqquipedButton;
+        if (discardedButton != null)
+        {
+            GameManager.Instance.discardList.Add(discardedButton.gameObject.GetComponent<AbilityButtonScript>());
+            discardedButton.gameObject.transform.SetParent(GameManager.Instance.discard.transform, false);
+        }
+        
+        eqquipedButton = null;
     }
+
+    
+
 }

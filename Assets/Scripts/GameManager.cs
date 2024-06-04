@@ -22,11 +22,14 @@ public class GameManager : MonoBehaviour
 	public GameObject[] shopButtons;
 
 	public List<GameObject> enemies;
-	public List<AbilityButtonScript> deck;
+	public List<AbilityButtonScript> deckList;
 	public List<AbilityButtonScript> startDeck;
 	public List<GameObject> inventory;
+	public List<AbilityButtonScript> discardList;
 
 	public TMP_Text deckCountText;
+	public TMP_Text discardCountText;
+
 
 	public static GameManager Instance;
 
@@ -34,8 +37,10 @@ public class GameManager : MonoBehaviour
 
 
 	public GameObject shopPanel;
-	public GameObject deckList;
+	public GameObject deck;
+	public GameObject discard;
 	public int deckCount;
+	public int discardCount;
 
 	public Sprite bulbOn;
 	public Sprite bulbOff;
@@ -101,10 +106,15 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		deckCount = deck.Count;
+		deckCount = deckList.Count;
+		discardCount = discardList.Count;
 		deckCountText.text = deckCount.ToString();
+		discardCountText.text = discardCount.ToString();
 
-		
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			UpdateDiscard();
+		}
 	}
 
 	public void StartTurn()
@@ -114,7 +124,7 @@ public class GameManager : MonoBehaviour
 		PlayerStats.Instance.playerCurrentActions = PlayerStats.Instance.playerMaxActions;
 		raycastBlock.enabled = false;
 
-		DrawButton(enemies.Count);
+		DrawButton(PlayerStats.Instance.drawCount);
 	}
 
 	public void EndTurn()
@@ -145,12 +155,20 @@ public class GameManager : MonoBehaviour
 		var ability = slot.eqquipedButton.GetComponent<AbilityButtonScript>();
 
 		foreach (var button in GameObject.FindGameObjectsWithTag("Button"))
-			{
+		{
 				DragDrop dragDrop = button.GetComponent<DragDrop>();
 				dragDrop.draggable = false;
-			}
+		}
 
 		ability.UseAbility(PlayerStats.Instance);
+		
+		if(ability.type != AbilityButtonScript.Category.starter)
+		{
+			discardList.Add(ability);
+			ability.gameObject.transform.SetParent(discard.transform, false);
+			slot.eqquipedButton = null;
+
+		}
 	}
 
 
@@ -207,32 +225,37 @@ public class GameManager : MonoBehaviour
 	{
 		foreach(var button in startDeck)
 		{
-			var newButton = Instantiate(button, deckList.transform);
-			newButton.transform.SetParent(deckList.transform);
+			var newButton = Instantiate(button, deck.transform);
+			newButton.transform.SetParent(deck.transform);
 		}
 	}
 
 	public void UpdateDeck()
 	{
-		int childnum = deckList.transform.childCount;
+		int childnum = deck.transform.childCount;
 
-		deck.Clear();
+		deckList.Clear();
 
 		for (int i = 0; i < childnum; i++)
 		{
-			AbilityButtonScript button = deckList.transform.GetChild(i).GetComponent<AbilityButtonScript>();
-			deck.Add(button);
+			AbilityButtonScript button = deck.transform.GetChild(i).GetComponent<AbilityButtonScript>();
+			deckList.Add(button);
 		}
 	}
 
-	IEnumerator DrawingButtons(int drawCount)
+	public void UpdateDiscard()
+	{
+		StartCoroutine(DiscardToDeck());
+	}
+
+	public IEnumerator DrawingButtons(int drawCount)
 	{
 		for (int i = drawCount; i > 0; i--)
 		{
-            if (deck.Count > 0)
+            if (deckList.Count > 0)
             {
-                int rnd = Random.Range(0, deck.Count);
-                AbilityButtonScript buttonToDraw = deck[rnd].GetComponent<AbilityButtonScript>();
+                int rnd = Random.Range(0, deckList.Count);
+                AbilityButtonScript buttonToDraw = deckList[rnd].GetComponent<AbilityButtonScript>();
 
                 for (int j = 0; j < inventory.Count; j++)
                 {
@@ -240,7 +263,7 @@ public class GameManager : MonoBehaviour
                     if (inventorySlot.empty)
                     {
                         buttonToDraw.transform.SetParent(inventorySlot.transform, false);
-                        deck.Remove(buttonToDraw);
+                        deckList.Remove(buttonToDraw);
 
                     }
                 }
@@ -250,6 +273,23 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds(0.2f);
         }
     }
+
+	public IEnumerator DiscardToDeck()
+	{ 
+		if(discardList.Count > 0)
+		{
+			for(int i = 0; i < discard.transform.childCount; i++)
+			{
+                AbilityButtonScript buttonFromDiscard = discard.transform.GetChild(i).GetComponent<AbilityButtonScript>();
+				buttonFromDiscard.transform.SetParent(deck.transform, false);
+				discardList.Remove(discardList[i]);
+
+				UpdateDeck();
+            }
+
+			yield return new WaitForSeconds(0.2f);
+		}
+	}
 
 	IEnumerator NextAction(int startingItem)
 	{

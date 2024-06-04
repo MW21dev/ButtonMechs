@@ -21,6 +21,7 @@ public class UIScript : MonoBehaviour
     public Sprite healthBulbOff;
 
     public GameObject deckPanel;
+    public GameObject discardPanel;
     public GameObject healthGrid;
     public GameObject healthBulbPrefab;
 
@@ -46,6 +47,7 @@ public class UIScript : MonoBehaviour
 
 
         deckPanel.SetActive(false);
+        discardPanel.SetActive(false);
 
         defaultGreen = new Color(0.1768868f, 0.7075472f, 0.2922177f);
 
@@ -97,7 +99,15 @@ public class UIScript : MonoBehaviour
             }
         }
 
-        
+        if (deckPanel.activeSelf)
+        {
+            discardPanel.SetActive(false);
+        }
+
+        if (discardPanel.activeSelf)
+        {
+            deckPanel.SetActive(false);
+        }
 
         playerMoneyText.text = PlayerStats.Instance.playerCurrentMoney.ToString();
 
@@ -162,10 +172,25 @@ public class UIScript : MonoBehaviour
         if (deckPanel.activeSelf)
         {
             deckPanel.SetActive(false);
+            
         }
         else if (!deckPanel.activeSelf)
         {
             deckPanel.SetActive(true);
+            discardPanel.SetActive(false);
+        }
+    }
+
+    public void DiscardPanel()
+    {
+        if (discardPanel.activeSelf)
+        {
+            discardPanel.SetActive(false);
+        }
+        else if (!deckPanel.activeSelf)
+        {
+            discardPanel.SetActive(true);
+            deckPanel.SetActive(false);
         }
     }
 }
