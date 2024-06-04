@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotForce: 10
+  damage: 0
   enemyBullet: 1
   playerbullet: 0
 --- !u!50 &4353361333625978706

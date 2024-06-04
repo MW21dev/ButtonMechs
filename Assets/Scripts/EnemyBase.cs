@@ -74,7 +74,7 @@ public class EnemyBase : MonoBehaviour
         if (timeLeft <= 0 && isHovering)
         {
             enemyinfoPanel.GetComponent<CanvasGroup>().alpha = 1f;
-            deckPanel.SetActive(false);
+            
 
             Image ab1 = ability1Image.GetComponent<Image>();
             Image ab2 = ability2Image.GetComponent<Image>();

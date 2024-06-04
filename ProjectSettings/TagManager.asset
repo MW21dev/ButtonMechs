@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Border
   - Button
+  - Bullet
+  - Ground
+  - ShopSlot
   layers:
   - Default
   - TransparentFX

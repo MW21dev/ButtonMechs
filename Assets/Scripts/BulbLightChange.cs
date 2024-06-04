@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BulbLightChange : MonoBehaviour
 {
     public Image[] bulbs;
+
+    public bool isActive;
+
+    public GameObject shopPanel;
 
     public Sprite bulbOn;
     public Sprite bulbOff;
@@ -15,6 +20,7 @@ public class BulbLightChange : MonoBehaviour
     private void Start()
     {
         StartOn();
+        
     }
 
     public void StartOn()
@@ -27,31 +33,44 @@ public class BulbLightChange : MonoBehaviour
         StartCoroutine(LightOff());
     }
 
+    private void Update()
+    {
+        
+    }
+
     public IEnumerator LightOn()
     {
-        for (int i = 0; i < bulbs.Length; i++)
+        if (shopPanel.activeSelf)
         {
-            bulbs[i].GetComponent<Image>().sprite = bulbOn;
-            if (i == bulbs.Length - 1)
+            for (int i = 0; i < bulbs.Length; i++)
             {
-                Invoke("StartOff", lightSpeed);
+                bulbs[i].GetComponent<Image>().sprite = bulbOn;
+                if (i == bulbs.Length - 1)
+                {
+                    Invoke("StartOff", lightSpeed);
+                }
+                yield return new WaitForSeconds(lightSpeed);
             }
-            yield return new WaitForSeconds(lightSpeed);
         }
+        
     }
 
     public IEnumerator LightOff()
     {
-        for (int i = 0; i < bulbs.Length; i++)
+        if (shopPanel.activeSelf)
         {
-            bulbs[i].GetComponent<Image>().sprite = bulbOff;
-
-            if(i == bulbs.Length - 1)
+            for (int i = 0; i < bulbs.Length; i++)
             {
-                Invoke("StartOn", lightSpeed);
+                bulbs[i].GetComponent<Image>().sprite = bulbOff;
+
+                if (i == bulbs.Length - 1)
+                {
+                    Invoke("StartOn", lightSpeed);
+                }
+
+                yield return new WaitForSeconds(lightSpeed);
             }
-            
-            yield return new WaitForSeconds(lightSpeed);
         }
     }
+    
 }
