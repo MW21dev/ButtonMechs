@@ -14,6 +14,7 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 	private CanvasGroup canvasGroup;
 
 	public bool draggable = true;
+	public bool isDraged = false;
 	
 	
 	private void Awake()
@@ -21,10 +22,25 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 		canvasGroup = GetComponent<CanvasGroup>();
 	}
 
+	private void Update()
+	{
+        if (isDraged && !draggable)
+        {
+            transform.SetParent(previousParent);
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
+            imageBody.raycastTarget = true;
+            imageIcon.raycastTarget = true;
+        }
+    }
+
+
+
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		if (draggable)
 		{
+			isDraged = true;
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             imageBody.raycastTarget = false;
@@ -34,6 +50,7 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
             transform.SetAsLastSibling();
         }
 
+		
     }
 		
 	
@@ -42,14 +59,18 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 	{
 		if (draggable)
 		{
+			isDraged = true;
 			transform.position = Input.mousePosition;
 		}
-	}
+
+       
+    }
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		if (draggable)
 		{
+			isDraged = false;
             transform.SetParent(parentAfterDrag);
             canvasGroup.alpha = 1f;
             canvasGroup.blocksRaycasts = true;

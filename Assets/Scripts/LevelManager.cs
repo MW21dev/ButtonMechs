@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject whiteMapCover;
     public GameObject shopPanel;
+    public GameObject ButtonsPanel;
 
     public GameObject[] mapObjects;
     
@@ -19,7 +20,7 @@ public class LevelManager : MonoBehaviour
     public bool isInLevel;
     public bool isInShop;
 
-    public string currentStage;
+    
     
     public enum levelStage
     {
@@ -52,34 +53,56 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if(stage == levelStage.level)
+ 
+        switch (stage)
         {
-            if (!isInLevel)
-            {
-                LaunchLevel();
-                isInLevel = true;
-            }
+            case levelStage.level:
+                if (!isInLevel)
+                {
+                    LaunchLevel();
+                    isInLevel = true;
+                }
+            break;
+            case levelStage.shop:
+                if (!isInShop)
+                {
+                    OpenShop();
+                    isInShop = true;
+                }
+                break;
         }
 
-        if (stage == levelStage.shop)
-        {
-            if (!isInShop)
-            {
-                OpenShop();
-                isInShop = true;
-            }
-        }
 
-        levelLoadingTime  -= Time.deltaTime;
+        if (stage == levelStage.level && isInLevel)
+        {
+            levelLoadingTime -= Time.deltaTime;
+
+        }
 
         if (levelLoadingTime < 0)
         {
             levelLoadingTime = 0;
         }
 
-        if(GameManager.Instance.enemies.Count <= 0 && levelLoadingTime == 0)
+        if(GameManager.Instance.enemies.Count <= 0 && levelLoadingTime == 0 && isInLevel)
         {
             Invoke("EndLevel", 0.5f);
+        }
+
+        if (isInLevel)
+        {
+            ButtonsPanel.GetComponent<CanvasGroup>().alpha = 1f;
+            ButtonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        else
+        {
+            ButtonsPanel.GetComponent<CanvasGroup>().alpha = 0f;
+            ButtonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            ExitShop();
         }
     }
 
@@ -87,14 +110,16 @@ public class LevelManager : MonoBehaviour
     public void LaunchLevel()
     {
         StartCoroutine(SetMap());
-        
-        levelLoadingTime = 5f;
+        GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
+        levelLoadingTime = 2f;
     }
 
     public void EndLevel()
     {
         isInLevel = false;
         stage = levelStage.shop;
+        GameManager.Instance.UpdateDiscard(GameManager.Instance.discardList.Count);
+
     }
 
     public void OpenShop()
@@ -112,14 +137,21 @@ public class LevelManager : MonoBehaviour
 
     public void ExitShop()
     {
+        isInShop = false;
+        stage = levelStage.level;
+        Invoke("CloseShopPanels", 0.1f);
+    }
+
+    public void CloseShopPanels()
+    {
+        
         shopPanel.GetComponent<CanvasGroup>().alpha = 0f;
         shopPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
         whiteMapCover.SetActive(false);
 
-        stage = levelStage.level;
-        levelLoadingTime = 5f;
-        isInShop = false;
     }
+
+    
 
     IEnumerator SetMap()
     {
@@ -140,4 +172,6 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
     }
+
+
 }

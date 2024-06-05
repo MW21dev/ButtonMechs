@@ -10,6 +10,8 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 
 public class GameManager : MonoBehaviour
@@ -113,7 +115,12 @@ public class GameManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			UpdateDiscard();
+			UpdateDiscard(discardList.Count);
+		}
+
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			debugShopKey();
 		}
 	}
 
@@ -243,9 +250,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void UpdateDiscard()
+	public void UpdateDiscard(int allDiscard)
 	{
-		StartCoroutine(DiscardToDeck());
+		StartCoroutine(DiscardToDeck(allDiscard));
 	}
 
 	public IEnumerator DrawingButtons(int drawCount)
@@ -274,22 +281,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-	public IEnumerator DiscardToDeck()
+	public IEnumerator DiscardToDeck(int discardToDeck)
 	{ 
-		if(discardList.Count > 0)
+		for(int i = discardToDeck; i > 0; i--)
 		{
-			for(int i = 0; i < discard.transform.childCount; i++)
-			{
-                AbilityButtonScript buttonFromDiscard = discard.transform.GetChild(i).GetComponent<AbilityButtonScript>();
-				buttonFromDiscard.transform.SetParent(deck.transform, false);
-				discardList.Remove(discardList[i]);
+            if (discardList.Count > 0)
+            {
+                for (int j = 0; j < discard.transform.childCount; j++)
+                {
+                    AbilityButtonScript buttonFromDiscard = discard.transform.GetChild(j).GetComponent<AbilityButtonScript>();
+                    buttonFromDiscard.transform.SetParent(deck.transform, false);
+                    discardList.Remove(discardList[j]);
 
-				UpdateDeck();
+                    UpdateDeck();
+                }
+
             }
-
+			
 			yield return new WaitForSeconds(0.2f);
-		}
-	}
+        }
+		
+    }
 
 	IEnumerator NextAction(int startingItem)
 	{
@@ -324,6 +336,15 @@ public class GameManager : MonoBehaviour
 
                 yield return new WaitForSeconds(2f);
             }
+		}
+	}
+
+	private void debugShopKey()
+	{
+		enemies.Clear();
+		foreach (var e in GameObject.FindGameObjectsWithTag("Enemy"))
+		{
+			Destroy(e);
 		}
 	}
 }

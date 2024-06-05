@@ -4604,6 +4604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878255520}
+  - component: {fileID: 878255521}
   m_Layer: 5
   m_Name: ButtonsPanel
   m_TagString: Untagged
@@ -4637,6 +4638,18 @@ RectTransform:
   m_AnchoredPosition: {x: 120, y: 0}
   m_SizeDelta: {x: 100, y: 170}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!225 &878255521
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878255519}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!4 &880768102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8219152060075445430, guid: 19685f7204ba23048b6c2102f1ce68dd, type: 3}
@@ -7083,9 +7096,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
-  levelLoadingTime: 5
+  levelLoadingTime: 2
   whiteMapCover: {fileID: 1103316903}
   shopPanel: {fileID: 1922470279}
+  ButtonsPanel: {fileID: 878255519}
   mapObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -7109,7 +7123,6 @@ MonoBehaviour:
   - {fileID: 0}
   isInLevel: 0
   isInShop: 0
-  currentStage: 
   stage: 0
 --- !u!1001 &1347517909
 PrefabInstance:

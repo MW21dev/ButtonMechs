@@ -11,6 +11,7 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 	public Image image;
 	public GameObject abilityText;
 	public TMP_Text description;
+
     
 
     public bool isHovering = false;
