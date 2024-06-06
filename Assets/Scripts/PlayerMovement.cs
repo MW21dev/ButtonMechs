@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement Instance;
+
+    public LayerMask mask;
     
     public SpriteRenderer playerSpriteRenderer;
     public CircleCollider2D playerCollider;
@@ -13,7 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform shotPoint;
 
     public Vector3 currentRotation;
-    public Vector3 angleToRotate;
+    public Vector3 rayCheck;
+
+    public bool canMove;
     
     public void Start()
     {
@@ -33,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         var pos = transform.position;
 
-        currentRotation = new Vector3(currentRotation.x % 360f, currentRotation.y % 360f, currentRotation.z % 360f);
+        
         transform.eulerAngles = currentRotation;
 
         
@@ -43,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        
 
         var pos = transform.position;
 
@@ -56,18 +59,56 @@ public class PlayerMovement : MonoBehaviour
 
         shotPoint.rotation = transform.rotation;
 
-        
+        currentRotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
 
+        if (transform.eulerAngles.z == 0)
+        {
+            rayCheck = Vector3.up;
+        }
+        else if (transform.eulerAngles.z == 90f)
+        {
+            rayCheck = Vector3.left;
+        }
+        else if (transform.eulerAngles.z == 270)
+        {
+            rayCheck = Vector3.right;
+
+        }
+        else if (transform.eulerAngles.z == 180)
+        {
+            rayCheck = Vector3.down;
+
+        }
+
+
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(shotPoint.position, rayCheck);
+
+        Debug.DrawRay(shotPoint.position, rayCheck, Color.red);
+
+        if (hit.collider.gameObject.tag == "Border" && hit.collider.gameObject.tag == "Ground")
+        {
+            Debug.Log("cant move");
+            canMove = false;
+        }
+        else if(hit.collider.gameObject.tag != "Border" || hit.collider.gameObject.tag != "Enemy")
+        {
+            Debug.Log("can move");
+            canMove = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            gameObject.SetActive(false);
+            collision.gameObject.GetComponent<EnemyBase>().GetHit(1000);
         }
     }
 
-
+    
 
 }

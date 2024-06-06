@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1731944881190703721}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.5, y: 9.5, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
 --- !u!50 &8382912875054556742
 Rigidbody2D:
@@ -179,6 +179,7 @@ MonoBehaviour:
   maxEnemyActions: 2
   enemyAbilitiesCount: 3
   isCounted: 0
+  canMove: 0
   isHovering: 0
   timeToWait: 0.5
   shotPoint: {fileID: 2808978806940639954}
@@ -196,6 +197,7 @@ MonoBehaviour:
   ability1Image: {fileID: 0}
   ability2Image: {fileID: 0}
   ability3Image: {fileID: 0}
+  rayCheck: {x: 0, y: 0, z: 0}
 --- !u!1 &2808978806940639954
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 2808978806940639954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

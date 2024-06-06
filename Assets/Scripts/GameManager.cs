@@ -35,12 +35,13 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager Instance;
 
-	public Image raycastBlock;
 
 
+	public GameObject buttonsPanel;
 	public GameObject shopPanel;
 	public GameObject deck;
 	public GameObject discard;
+	public GameObject enemyInfoPanel;
 	public int deckCount;
 	public int discardCount;
 
@@ -73,7 +74,8 @@ public class GameManager : MonoBehaviour
 		playerTurn = true;
 		enemyTurn = false;
 
-		raycastBlock.enabled = false;
+		buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+		enemyInfoPanel.GetComponent<CanvasGroup>().alpha = 0f;
 
 		CreateStartDeck();
 		UpdateDeck();
@@ -129,15 +131,18 @@ public class GameManager : MonoBehaviour
 		playerTurn = true;
 		enemyTurn = false;
 		PlayerStats.Instance.playerCurrentActions = PlayerStats.Instance.playerMaxActions;
-		raycastBlock.enabled = false;
+		
+        buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-		DrawButton(PlayerStats.Instance.drawCount);
+
+        DrawButton(PlayerStats.Instance.drawCount);
 	}
 
 	public void EndTurn()
 	{
-		raycastBlock.enabled = true;
-		StartCoroutine(NextAction(0));
+		buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        StartCoroutine(NextAction(0));
 	}
 
 	public void StartEnemyTurn()

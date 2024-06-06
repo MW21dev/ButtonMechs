@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class EnemyBase : MonoBehaviour
     public int maxEnemyActions;
     public int enemyAbilitiesCount;
     public bool isCounted;
+    public bool canMove;
 
     public bool isHovering = false;
     public float timeToWait = 0.5f;
@@ -37,6 +39,8 @@ public class EnemyBase : MonoBehaviour
     public GameObject ability1Image;
     public GameObject ability2Image;
     public GameObject ability3Image;
+
+    public Vector3 rayCheck;
 
     private void Awake()
     {
@@ -96,6 +100,25 @@ public class EnemyBase : MonoBehaviour
             enemyActionsText.text = maxEnemyActions.ToString();
 
             Debug.Log("OnEnemy");
+
+            if (transform.eulerAngles.z == 0)
+            {
+                rayCheck = Vector3.up;
+            }
+            else if (transform.eulerAngles.z == 90f)
+            {
+                rayCheck = Vector3.left;
+            }
+            else if (transform.eulerAngles.z == 270)
+            {
+                rayCheck = Vector3.right;
+
+            }
+            else if (transform.eulerAngles.z == 180)
+            {
+                rayCheck = Vector3.down;
+
+            }
         }
 
         
@@ -104,6 +127,24 @@ public class EnemyBase : MonoBehaviour
             activeSprite.enabled = false;
         }
 
+    }
+    private void FixedUpdate()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(shotPoint.transform.position, rayCheck);
+
+        Debug.DrawRay(shotPoint.transform.position, rayCheck, Color.red);
+
+
+        if (hit.collider.gameObject.tag == "Border" && hit.collider.gameObject.tag == "Ground" || hit.collider.gameObject.tag == "Enemy")
+        {
+
+            canMove = false;
+        }
+        else if (hit.collider.gameObject.tag != "Border" || hit.collider.gameObject.tag != "Enemy")
+        {
+            
+            canMove = true;
+        }
     }
 
     public virtual void DoAction()

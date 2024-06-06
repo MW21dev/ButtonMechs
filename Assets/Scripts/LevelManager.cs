@@ -12,8 +12,8 @@ public class LevelManager : MonoBehaviour
 
     public GameObject whiteMapCover;
     public GameObject shopPanel;
-    public GameObject ButtonsPanel;
-
+    public GameObject buttonsPanel;
+    public GameObject raycastBlock;
     public GameObject[] mapObjects;
     
 
@@ -91,13 +91,15 @@ public class LevelManager : MonoBehaviour
 
         if (isInLevel)
         {
-            ButtonsPanel.GetComponent<CanvasGroup>().alpha = 1f;
-            ButtonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            buttonsPanel.GetComponent<CanvasGroup>().alpha = 1f;
+            buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            
         }
         else
         {
-            ButtonsPanel.GetComponent<CanvasGroup>().alpha = 0f;
-            ButtonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            buttonsPanel.GetComponent<CanvasGroup>().alpha = 0f;
+            buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            
         }
 
         if (Input.GetKeyUp(KeyCode.L))

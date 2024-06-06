@@ -35,4 +35,12 @@ public class GroundTile : MonoBehaviour
             empty = true;
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Bullet"))
+        {
+            empty = false;
+        }
+    }
 }
