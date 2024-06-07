@@ -10,62 +10,82 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 {
 	public Image image;
 	public GameObject abilityText;
+	public GameObject typeText;
 	public TMP_Text description;
+	public TMP_Text typeDescription;
 
-    
+	
 
-    public bool isHovering = false;
-    public float timeToWait = 0.5f;
-    float timeLeft;
+	public bool isHovering = false;
+	public float timeToWait = 0.5f;
+	float timeLeft;
 
 	public bool abilityUsed;
-    
+	
 
 	public string abilityName;
-    public int abilityPrice;
+	public int abilityPrice;
 
 	[TextArea]
 	public string abilityDescription;
 
-    public enum Category
-    {
-        starter,
-        normal,
-        chrome,
-        silver,
-        gold,
-        rainbow,
-        poker,
-    }
+	[TextArea]
+	public string abilityTypeDescription;
 
-    public Category type;
+	public enum Category
+	{
+		starter,
+		normal,
+		chrome,
+		silver,
+		gold,
+		rainbow,
+		poker,
+	}
 
-    private void Start()
-    {
-        description.text = abilityDescription;
-        abilityText.SetActive(false);
+	public Category type;
 
-    }
-    void Update()
-    {
-        if (isHovering)
-        {
-            timeLeft -= Time.deltaTime;
+	private void Start()
+	{
+		description.text = abilityDescription;
+		abilityText.SetActive(false);
+		if(typeText != null && typeDescription != null)
+		{
+			typeDescription.text = abilityTypeDescription;
+			typeText.SetActive(false);
+		}
+
+	}
+	void Update()
+	{
+		if (isHovering)
+		{
+			timeLeft -= Time.deltaTime;
+		}
+		if (timeLeft <= 0)
+		{
+			abilityText.SetActive(true);
+
+            if (typeText != null && typeDescription != null)
+            {
+                typeText.SetActive(true);
+            }
         }
-        if (timeLeft <= 0)
-        {
-            abilityText.SetActive(true);
-        }
 
-        if (!isHovering)
-        {
-            abilityText.SetActive(false);
-        }
+		if (!isHovering)
+		{
+			abilityText.SetActive(false);
 
-        
-    }
+			if (typeText != null && typeDescription != null)
+			{
+				typeText.SetActive(false);
+			}
+		}
 
-    public virtual void UseAbility(PlayerStats player)
+		
+	}
+
+	public virtual void UseAbility(PlayerStats player)
 	{
 		player = PlayerStats.Instance;
 		
@@ -75,20 +95,20 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 		}
 	}
 
-    public virtual void UseMenuAbility()
-    {
+	public virtual void UseMenuAbility()
+	{
 
-    }
+	}
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        timeLeft = timeToWait;
-        isHovering = true;
-    }
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		timeLeft = timeToWait;
+		isHovering = true;
+	}
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isHovering = false;
-    }
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		isHovering = false;
+	}
 
 }

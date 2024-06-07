@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8555542938943839276}
   - component: {fileID: 2205899371730215224}
   - component: {fileID: 7137712301970340191}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8982357745973873613}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}

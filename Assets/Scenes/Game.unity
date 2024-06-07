@@ -1802,8 +1802,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: 31f7dc351e3d96f469efab29db8f6e6b, type: 2}
-  level: 0
-  levelLoadingTime: 2
+  - {fileID: 11400000, guid: 181c5231159c6654e9da9a62a9420089, type: 2}
+  level: -1
   whiteMapCover: {fileID: 1103316903}
   shopPanel: {fileID: 1922470279}
   buttonsPanel: {fileID: 878255519}
@@ -5061,10 +5061,10 @@ RectTransform:
   - {fileID: 878255520}
   - {fileID: 1185051765}
   - {fileID: 249239574}
-  - {fileID: 568058877}
-  - {fileID: 1403155113}
   - {fileID: 1712797769}
+  - {fileID: 1403155113}
   - {fileID: 300250961}
+  - {fileID: 568058877}
   - {fileID: 210023761}
   - {fileID: 1813213468}
   m_Father: {fileID: 0}
@@ -5252,7 +5252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enemies' Turn
+  m_text: Enemy Turn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

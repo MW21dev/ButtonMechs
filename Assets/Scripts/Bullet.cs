@@ -43,6 +43,8 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Border"))
         {
+            ObjectScript objectScript = collision.gameObject.GetComponent<ObjectScript>();
+            objectScript.GetHit(1);
             Destroy(gameObject);
         }
     }

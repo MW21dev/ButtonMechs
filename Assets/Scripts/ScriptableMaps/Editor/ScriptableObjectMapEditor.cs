@@ -29,7 +29,7 @@ public class ScriptableObjectMapEditor : Editor
 		if(EditorGUI.EndChangeCheck() && EditorApplication.isPlaying)
 		{
 			EditorUtility.SetDirty(target);
-			GameObject.FindAnyObjectByType<LevelManager>().LaunchLevel();
+			GameObject.FindAnyObjectByType<LevelManager>().ReloadLevel();
 		}
 	}
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Video;
@@ -14,7 +15,6 @@ public class LevelManager : MonoBehaviour
 	public ScriptableObjectMap[] levels;
 
 	public int level;
-	public float levelLoadingTime;
 
 	public GameObject whiteMapCover;
 	public GameObject shopPanel;
@@ -73,6 +73,8 @@ public class LevelManager : MonoBehaviour
 		shopPanel.GetComponent<CanvasGroup>().alpha = 0f;
 		shopPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
 		whiteMapCover.SetActive(false);
+
+		level = Mathf.Clamp(level, 0, levels.Length);
 	}
 
 	private void Update()
@@ -97,18 +99,8 @@ public class LevelManager : MonoBehaviour
 		}
 
 
-		if (stage == levelStage.level && isInLevel)
-		{
-			levelLoadingTime -= Time.deltaTime;
 
-		}
-
-		if (levelLoadingTime < 0)
-		{
-			levelLoadingTime = 0;
-		}
-
-		if(GameManager.Instance.enemies.Count <= 0 && levelLoadingTime == 0 && isInLevel)
+		if(GameManager.Instance.enemies.Count <= 0 && isInLevel)
 		{
 			Invoke("EndLevel", 0.5f);
 		}
@@ -132,12 +124,35 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
+	public void ReloadLevel()
+	{
+
+		foreach (var child in transform.Cast<Transform>())
+        {
+            Destroy(child.gameObject);
+
+        }
+
+        foreach (var obj in GameObject.FindGameObjectsWithTag("PickUp"))
+        {
+            Destroy(obj);
+        }
+
+        foreach (var obj in GameObject.FindGameObjectsWithTag("Border"))
+        {
+            if (!obj.GetComponent<ObjectScript>().mapBorder)
+            {
+                Destroy(obj);
+            }
+        }
+
+        SetMap(level);
+    }
 
 	public void LaunchLevel()
 	{
 		SetMap(level);
 		GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
-		levelLoadingTime = 2f;
 	}
 
 	public void EndLevel()
@@ -145,6 +160,25 @@ public class LevelManager : MonoBehaviour
 		isInLevel = false;
 		stage = levelStage.shop;
 		GameManager.Instance.UpdateDiscard(GameManager.Instance.discardList.Count);
+
+		foreach(var child in transform.Cast<Transform>())
+		{
+			Destroy(child.gameObject);
+
+		}
+
+		foreach(var obj in GameObject.FindGameObjectsWithTag("PickUp"))
+		{
+			Destroy(obj);
+		}
+
+		foreach(var obj in GameObject.FindGameObjectsWithTag("Border"))
+		{
+			if (!obj.GetComponent<ObjectScript>().mapBorder)
+			{
+				Destroy(obj);
+			}
+		}
 
 	}
 
@@ -165,6 +199,7 @@ public class LevelManager : MonoBehaviour
 	{
 		isInShop = false;
 		stage = levelStage.level;
+		level += 1;
 		Invoke("CloseShopPanels", 0.1f);
 	}
 
@@ -184,7 +219,7 @@ public class LevelManager : MonoBehaviour
 		var map = levels[level];
 
 		PlayerStats.Instance.transform.position = new Vector3(map.playerPos.x - MAP_POSITION_MOD, map.playerPos.y + MAP_POSITION_MOD_Y, 0f);
-		PlayerStats.Instance.transform.rotation = Quaternion.Euler(0f, 0f, map.playerRot);
+		PlayerStats.Instance.transform.rotation = Quaternion.Euler(0f, 0f, (float)map.playerRot);
 
 		for (int y = 0; y < ScriptableObjectMap.MAP_SIZE; ++y)
 		{
@@ -207,28 +242,28 @@ public class LevelManager : MonoBehaviour
 			switch (obj.type)
 			{
 				case ScriptableObjectMap.MapObject.Type.LandMine:
-					Instantiate(landMinePrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y , 0f), Quaternion.identity);
+					Instantiate(landMinePrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y , 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				case ScriptableObjectMap.MapObject.Type.Rock0:
-					Instantiate(rock0Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.identity);
+					Instantiate(rock0Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				case ScriptableObjectMap.MapObject.Type.Rock1:
-					Instantiate(rock1Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.identity);
+					Instantiate(rock1Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				case ScriptableObjectMap.MapObject.Type.Rock2:
-					Instantiate(rock2Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.identity);
+					Instantiate(rock2Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				case ScriptableObjectMap.MapObject.Type.Rock3:
-					Instantiate(rock3Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.identity);
+					Instantiate(rock3Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				case ScriptableObjectMap.MapObject.Type.Rock4:
-					Instantiate(rock4Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.identity);
+					Instantiate(rock4Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				case ScriptableObjectMap.MapObject.Type.Rock5:
-					Instantiate(rock5Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.identity);
+					Instantiate(rock5Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				case ScriptableObjectMap.MapObject.Type.Rock6:
-					Instantiate(rock6Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.identity);
+					Instantiate(rock6Prefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rot)));
 					break;
 				
 			}
@@ -239,8 +274,9 @@ public class LevelManager : MonoBehaviour
 			switch (obj.type)
 			{
 				case ScriptableObjectMap.MapEnemies.Type.BasicTank:
+
 					
-					Instantiate(basicTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, obj.rot)));
+					Instantiate(basicTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
 					break;
 			}
 		}

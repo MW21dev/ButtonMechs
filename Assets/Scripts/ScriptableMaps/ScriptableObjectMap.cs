@@ -15,15 +15,33 @@ public class ScriptableObjectMap : ScriptableObject
 	public MapEnemies[] mapEnemies;
 
 	public Vector2 playerPos;
-	public float playerRot = 0;
+
+	public TypeRot playerRot;
+
+	public enum TypeRot
+	{
+        up = 0,
+        right = 270,
+        left = 90,
+        down = 180,
+    }
 
 	[Serializable]
 	public class MapObject
 	{
 		public Vector2 pos;
 		public Type type;
+		public TypeRot rot;
 
-		public enum Type
+        public enum TypeRot
+        {
+            up = 0,
+            right = 270,
+            left = 90,
+            down = 180,
+        }
+
+        public enum Type
 		{
 			None = 0,
 			Rock0 = 1,
@@ -41,15 +59,24 @@ public class ScriptableObjectMap : ScriptableObject
 	public class MapEnemies
 	{
 		public Vector2 pos;
-		public float rot = 0;
+		
 		
 
 		public Type type;
+		public RotationType rotType;
 
 		public enum Type
 		{
 			None = 0,
 			BasicTank = 1,
+		}
+
+		public enum RotationType
+		{
+			up = 0,
+			right = 270,
+			left = 90,
+			down = 180,
 		}
 	}
 

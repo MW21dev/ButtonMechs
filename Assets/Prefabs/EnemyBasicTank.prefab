@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6425998497325650944}
   - component: {fileID: 5084588135280796759}
   - component: {fileID: 8382912875054556742}
-  - component: {fileID: 2473884663332731327}
+  - component: {fileID: 3644572577033041892}
   m_Layer: 0
   m_Name: EnemyBasicTank
   m_TagString: Enemy
@@ -160,8 +160,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &2473884663332731327
+  m_Constraints: 7
+--- !u!114 &3644572577033041892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1731944881190703721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c094c20c7967064da85769ed3f2693a, type: 3}
+  m_Script: {fileID: 11500000, guid: 011836415debfce47a372be6c913203b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Basic Tank
@@ -180,12 +180,17 @@ MonoBehaviour:
   enemyAbilitiesCount: 3
   isCounted: 0
   canMove: 0
+  isFacingPlayer: 0
   mask:
     serializedVersion: 2
-    m_Bits: 2112
+    m_Bits: 1088
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 2048
   isHovering: 0
   timeToWait: 0.5
   rayRange: 0.5
+  viewRange: 10
   shotPoint: {fileID: 2808978806940639954}
   bullet: {fileID: 3764961782599655993, guid: 3af28f44d84d5d44b84cb751e48a46e5, type: 3}
   explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
@@ -202,6 +207,7 @@ MonoBehaviour:
   ability2Image: {fileID: 0}
   ability3Image: {fileID: 0}
   rayCheck: {x: 0, y: 0}
+  viewCheck: {x: 0, y: 0}
   testRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2808978806940639954
 GameObject:

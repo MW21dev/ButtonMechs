@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6831422171195342191}
   - component: {fileID: 7401718336782402204}
+  - component: {fileID: -4511629041096228393}
   m_Layer: 6
   m_Name: Rock3
   m_TagString: Border
@@ -162,3 +163,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-4511629041096228393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6733278916657617214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91277ccc34472aa40aa82a5ef89bfafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objName: Rock
+  objMaxHealth: 3
+  objCurrentHealth: 3
+  destructable: 1
+  movable: 0
+  explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}

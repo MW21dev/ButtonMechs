@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4079968161924523702}
   - component: {fileID: 8178378490211066670}
   - component: {fileID: 2649056293162552081}
+  - component: {fileID: 118007842555326269}
   m_Layer: 6
   m_Name: Rock6
   m_TagString: Border
@@ -106,6 +107,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &118007842555326269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097835911867080248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91277ccc34472aa40aa82a5ef89bfafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objName: Rock
+  objMaxHealth: 3
+  objCurrentHealth: 3
+  destructable: 1
+  movable: 0
+  explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
 --- !u!1 &5007375374162198093
 GameObject:
   m_ObjectHideFlags: 0

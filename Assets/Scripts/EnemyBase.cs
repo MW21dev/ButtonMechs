@@ -15,12 +15,15 @@ public class EnemyBase : MonoBehaviour
     public int enemyAbilitiesCount;
     public bool isCounted;
     public bool canMove;
+    public bool isFacingPlayer;
 
     public LayerMask mask;
+    public LayerMask viewMask;
 
     public bool isHovering = false;
     public float timeToWait = 0.5f;
     public float rayRange = 0.5f;
+    public float viewRange = 10f;
     float timeLeft;
 
     public GameObject shotPoint;
@@ -44,6 +47,7 @@ public class EnemyBase : MonoBehaviour
     public GameObject ability3Image;
 
     public Vector2 rayCheck;
+    public Vector2 viewCheck;
     public Vector3 testRotation;
 
     private void Awake()
@@ -112,20 +116,24 @@ public class EnemyBase : MonoBehaviour
         if (testRotation.z == 0)
         {
             rayCheck = Vector2.up;
-            
+            viewCheck = new Vector2(0f, viewRange);
         }
         else if (transform.eulerAngles.z == 90f)
         {
             rayCheck = Vector2.left;
+            viewCheck = new Vector2(-viewRange, 0f);
         }
         else if (transform.eulerAngles.z == 270)
         {
             rayCheck = Vector2.right;
+            viewCheck = new Vector2(viewRange, 0f);
 
         }
         else if (transform.eulerAngles.z == 180)
         {
             rayCheck = Vector2.down;
+            viewCheck = new Vector2(0f, -viewRange);
+
 
         }
 
@@ -143,8 +151,10 @@ public class EnemyBase : MonoBehaviour
         Vector2 shotPP = Vector3Extension.AsVector2(shotPoint.transform.position);
 
         RaycastHit2D hitItem = Physics2D.Raycast(shotPP, rayCheck, rayRange, mask);
+        //RaycastHit2D seePlayer = Physics2D.Raycast(shotPP, viewCheck, viewRange, viewMask);
 
         Debug.DrawRay(shotPP, rayCheck, Color.red);
+        Debug.DrawRay(shotPP, viewCheck, Color.yellow);
 
 
         if (hitItem)
@@ -166,6 +176,10 @@ public class EnemyBase : MonoBehaviour
             Debug.Log("can move");
             canMove = true;
         }
+
+
+
+        isFacingPlayer = Physics2D.Raycast(shotPP, viewCheck, viewRange, viewMask);
     }
 
     public virtual void DoAction()

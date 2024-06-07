@@ -6,7 +6,7 @@ public class EnemyRotate : EnemyAbilityButton
 {
     public override void UseAbility(EnemyBase enemy)
     {
-        int rnd = Random.Range(0, 1);
+        int rnd = Random.Range(0, 2);
 
         if (rnd == 0)
         {

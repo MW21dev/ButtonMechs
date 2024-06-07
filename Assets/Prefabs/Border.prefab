@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8954472338633077763}
   - component: {fileID: 6383720087793239879}
+  - component: {fileID: 779800490766789523}
   m_Layer: 6
   m_Name: Border
   m_TagString: Border
@@ -77,3 +78,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &779800490766789523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4654179865148295066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f549bdcfe9345a24aa7494e43184dd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objName: Map Border
+  objMaxHealth: 999
+  objCurrentHealth: 999
+  destructable: 0
+  movable: 0
+  mapBorder: 1
+  explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
