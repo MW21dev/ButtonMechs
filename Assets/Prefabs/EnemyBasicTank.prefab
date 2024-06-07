@@ -180,8 +180,12 @@ MonoBehaviour:
   enemyAbilitiesCount: 3
   isCounted: 0
   canMove: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 2112
   isHovering: 0
   timeToWait: 0.5
+  rayRange: 0.5
   shotPoint: {fileID: 2808978806940639954}
   bullet: {fileID: 3764961782599655993, guid: 3af28f44d84d5d44b84cb751e48a46e5, type: 3}
   explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
@@ -197,7 +201,8 @@ MonoBehaviour:
   ability1Image: {fileID: 0}
   ability2Image: {fileID: 0}
   ability3Image: {fileID: 0}
-  rayCheck: {x: 0, y: 0, z: 0}
+  rayCheck: {x: 0, y: 0}
+  testRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &2808978806940639954
 GameObject:
   m_ObjectHideFlags: 0

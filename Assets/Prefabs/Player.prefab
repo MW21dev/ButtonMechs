@@ -128,12 +128,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa14d00c37557941b4ce0b271242a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayRange: 0.5
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
   playerSpriteRenderer: {fileID: 0}
   playerCollider: {fileID: 0}
   playerRigidbody: {fileID: 0}
   shotPoint: {fileID: 8982357745973873613}
   currentRotation: {x: 0, y: 0, z: 0}
-  angleToRotate: {x: 0, y: 0, z: 0}
+  rayCheck: {x: 0, y: 0}
+  canMove: 0
 --- !u!114 &2205899371730215224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +157,7 @@ MonoBehaviour:
   playerCurrentActions: 0
   playerDamage: 0
   playerCurrentMoney: 3
+  drawCount: 1
   isDead: 0
   explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
 --- !u!58 &7137712301970340191

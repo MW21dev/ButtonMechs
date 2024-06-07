@@ -16,8 +16,11 @@ public class EnemyBase : MonoBehaviour
     public bool isCounted;
     public bool canMove;
 
+    public LayerMask mask;
+
     public bool isHovering = false;
     public float timeToWait = 0.5f;
+    public float rayRange = 0.5f;
     float timeLeft;
 
     public GameObject shotPoint;
@@ -40,7 +43,8 @@ public class EnemyBase : MonoBehaviour
     public GameObject ability2Image;
     public GameObject ability3Image;
 
-    public Vector3 rayCheck;
+    public Vector2 rayCheck;
+    public Vector3 testRotation;
 
     private void Awake()
     {
@@ -67,6 +71,8 @@ public class EnemyBase : MonoBehaviour
 
         activeSprite.enabled = false;
         enemyinfoPanel.GetComponent<CanvasGroup>().alpha = 0f;
+
+        transform.eulerAngles = transform.rotation.eulerAngles;
     }
 
     private void Update()
@@ -101,26 +107,30 @@ public class EnemyBase : MonoBehaviour
 
             Debug.Log("OnEnemy");
 
-            if (transform.eulerAngles.z == 0)
-            {
-                rayCheck = Vector3.up;
-            }
-            else if (transform.eulerAngles.z == 90f)
-            {
-                rayCheck = Vector3.left;
-            }
-            else if (transform.eulerAngles.z == 270)
-            {
-                rayCheck = Vector3.right;
-
-            }
-            else if (transform.eulerAngles.z == 180)
-            {
-                rayCheck = Vector3.down;
-
-            }
         }
 
+        if (testRotation.z == 0)
+        {
+            rayCheck = Vector2.up;
+            
+        }
+        else if (transform.eulerAngles.z == 90f)
+        {
+            rayCheck = Vector2.left;
+        }
+        else if (transform.eulerAngles.z == 270)
+        {
+            rayCheck = Vector2.right;
+
+        }
+        else if (transform.eulerAngles.z == 180)
+        {
+            rayCheck = Vector2.down;
+
+        }
+
+
+        testRotation = transform.eulerAngles;
         
         if(enemyActions == 0)
         {
@@ -130,19 +140,30 @@ public class EnemyBase : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(shotPoint.transform.position, rayCheck);
+        Vector2 shotPP = Vector3Extension.AsVector2(shotPoint.transform.position);
 
-        Debug.DrawRay(shotPoint.transform.position, rayCheck, Color.red);
+        RaycastHit2D hitItem = Physics2D.Raycast(shotPP, rayCheck, rayRange, mask);
+
+        Debug.DrawRay(shotPP, rayCheck, Color.red);
 
 
-        if (hit.collider.gameObject.tag == "Border" && hit.collider.gameObject.tag == "Ground" || hit.collider.gameObject.tag == "Enemy")
+        if (hitItem)
         {
-
-            canMove = false;
+            Debug.Log(hitItem.collider.gameObject.name);
+            if (hitItem.collider.gameObject.tag == "Border")
+            {
+                Debug.Log("cant move");
+                canMove = false;
+            }
+            else if(hitItem.collider.gameObject.tag == "Enemy")
+            {
+                Debug.Log("cant move");
+                canMove = false;
+            }
         }
-        else if (hit.collider.gameObject.tag != "Border" || hit.collider.gameObject.tag != "Enemy")
+        else
         {
-            
+            Debug.Log("can move");
             canMove = true;
         }
     }
@@ -183,7 +204,7 @@ public class EnemyBase : MonoBehaviour
 
     }
 
-    public void EnemyNextAction()
+    public virtual void EnemyNextAction()
     {
         if (enemyActions > 0)
         {

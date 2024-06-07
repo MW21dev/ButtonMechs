@@ -23,37 +23,42 @@ public class LandMine : MapPickUp
 
     public IEnumerator Explode(Collider2D collision)
     {
-        for (int i = 0; i < repeats; i++)
+        if(collision.gameObject.tag != "Ground")
         {
-            if(spriteRenderer.sprite == mineOff && i != repeats - 1)
+            for (int i = 0; i < repeats; i++)
             {
-                spriteRenderer.sprite = mineOn;
-            }
-            else if (spriteRenderer.sprite == mineOn && i != repeats - 1)
-            {
-                spriteRenderer.sprite = mineOff;
-            }
-            else if(i == repeats - 1)
-            {
-                spriteRenderer.sprite = explode;
-                Invoke("ExplodeDestroy", 0.2f);
-
-                if (isOnTile)
+                if (spriteRenderer.sprite == mineOff && i != repeats - 1)
                 {
-                    if (collision.gameObject.tag == "Enemy")
-                    {
-                        collision.gameObject.GetComponent<EnemyBase>().GetHit(damage);
-                    }
-                    else if (collision.gameObject.tag == "Player")
-                    {
-                        collision.gameObject.GetComponent<PlayerStats>().GetHit(damage);
-                    }
+                    spriteRenderer.sprite = mineOn;
                 }
-                
+                else if (spriteRenderer.sprite == mineOn && i != repeats - 1)
+                {
+                    spriteRenderer.sprite = mineOff;
+                }
+                else if (i == repeats - 1)
+                {
+                    spriteRenderer.sprite = explode;
+                    Invoke("ExplodeDestroy", 0.2f);
 
+                    if (isOnTile)
+                    {
+                        if (collision.gameObject.tag == "Enemy")
+                        {
+                            collision.gameObject.GetComponent<EnemyBase>().GetHit(damage);
+                        }
+                        else if (collision.gameObject.tag == "Player")
+                        {
+                            collision.gameObject.GetComponent<PlayerStats>().GetHit(damage);
+                        }
+                    }
+
+
+                }
+
+                yield return new WaitForSeconds(0.5f);
             }
-
-            yield return new WaitForSeconds(0.5f);
         }
+        
+        
     }
 }
