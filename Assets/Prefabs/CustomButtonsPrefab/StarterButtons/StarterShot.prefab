@@ -101,14 +101,12 @@ MonoBehaviour:
   typeDescription: {fileID: 2869548007973849313}
   isHovering: 0
   timeToWait: 0.5
+  abilityTime: 1
   abilityUsed: 0
   abilityName: Shot
   abilityPrice: 0
   abilityDescription: Shot forward
-  abilityTypeDescription: 'Starter
-
-
-    Cant be destroyed or discarded'
+  abilityTypeDescription: Can't be destroyed or discarded
   type: 0
   bullet: {fileID: 3764961782599655993, guid: 99d0bbe80e7b45a499056ef9d6b0628f, type: 3}
   shotPoint: {fileID: 0}

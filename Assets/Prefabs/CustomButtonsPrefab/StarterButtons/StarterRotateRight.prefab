@@ -101,14 +101,12 @@ MonoBehaviour:
   typeDescription: {fileID: 3504739133538062177}
   isHovering: 0
   timeToWait: 0.5
+  abilityTime: 1
   abilityUsed: 0
-  abilityName: Rotate Right
+  abilityName: Rotate
   abilityPrice: 0
   abilityDescription: Rotate your tank right
-  abilityTypeDescription: 'Starter
-
-
-    Can''t be destroyed or discarded'
+  abilityTypeDescription: Can't be destroyed or discarded
   type: 0
   right: 1
   left: 0

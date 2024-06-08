@@ -3,11 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -181,6 +179,11 @@ public class GameManager : MonoBehaviour
 			slot.eqquipedButton = null;
 
 		}
+		
+		if(ability.type == AbilityButtonScript.Category.gold)
+		{
+			PlayerStats.Instance.playerCurrentMoney += 1;
+		}
 	}
 
 
@@ -312,15 +315,20 @@ public class GameManager : MonoBehaviour
 	{
 		for (int i = startingItem;  i < buttonSlots.Length; i++)
 		{
-			UseButton(i);
+            ButtonSlot slot;
+
+            slot = buttonSlots[i].GetComponent<ButtonSlot>();
+            var ability = slot.eqquipedButton.GetComponent<AbilityButtonScript>();
+
+            UseButton(i);
 			LightBulb(i);
 
 			if(i == buttonSlots.Length - 1)
 			{
-				Invoke("ResetPlayerTurn", 1f);
+				Invoke("ResetPlayerTurn", ability.abilityTime);
 			}
 
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(ability.abilityTime);
 		}
 	}
 

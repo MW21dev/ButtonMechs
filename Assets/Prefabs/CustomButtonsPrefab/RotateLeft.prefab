@@ -80,6 +80,7 @@ MonoBehaviour:
   parentAfterDrag: {fileID: 0}
   previousParent: {fileID: 0}
   draggable: 1
+  isDraged: 0
 --- !u!114 &6700020463739037018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,13 +95,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   abilityText: {fileID: 5367261184433023441}
+  typeText: {fileID: 0}
   description: {fileID: 5080598512481000502}
+  typeDescription: {fileID: 0}
   isHovering: 0
   timeToWait: 0.5
+  abilityTime: 1
   abilityUsed: 0
   abilityName: Rotate Left
   abilityPrice: 2
   abilityDescription: Rotate your tank left
+  abilityTypeDescription: 
   type: 1
   right: 0
   left: 1

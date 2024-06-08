@@ -18,6 +18,7 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	public bool isHovering = false;
 	public float timeToWait = 0.5f;
+	public float abilityTime = 0f;
 	float timeLeft;
 
 	public bool abilityUsed;
@@ -47,11 +48,11 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	private void Start()
 	{
-		description.text = abilityDescription;
+		description.text = $"{abilityName}" + "\n" + "\n "+ $"{abilityDescription}";
 		abilityText.SetActive(false);
 		if(typeText != null && typeDescription != null)
 		{
-			typeDescription.text = abilityTypeDescription;
+			typeDescription.text = $"{type}" + "\n " + "\n" + $"{abilityTypeDescription}";
 			typeText.SetActive(false);
 		}
 

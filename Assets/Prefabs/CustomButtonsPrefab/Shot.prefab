@@ -95,13 +95,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   abilityText: {fileID: 3788115724681319180}
+  typeText: {fileID: 0}
   description: {fileID: 4208190794837305544}
+  typeDescription: {fileID: 0}
   isHovering: 0
   timeToWait: 0.5
+  abilityTime: 1
   abilityUsed: 0
   abilityName: Shot
   abilityPrice: 2
   abilityDescription: Shot forward
+  abilityTypeDescription: 
   type: 1
   bullet: {fileID: 3764961782599655993, guid: 99d0bbe80e7b45a499056ef9d6b0628f, type: 3}
   shotPoint: {fileID: 0}

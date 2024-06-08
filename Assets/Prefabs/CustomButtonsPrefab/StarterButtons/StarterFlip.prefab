@@ -101,14 +101,12 @@ MonoBehaviour:
   typeDescription: {fileID: 2409650603456577470}
   isHovering: 0
   timeToWait: 0.5
+  abilityTime: 1
   abilityUsed: 0
   abilityName: Flip
   abilityPrice: 0
   abilityDescription: Flip your tank in opposite direction
-  abilityTypeDescription: 'Starter
-
-
-    Can''t be destroyed or discarded'
+  abilityTypeDescription: Can't be destroyed or discarded
   type: 0
 --- !u!50 &7103329418612840732
 Rigidbody2D:

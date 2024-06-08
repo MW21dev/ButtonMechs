@@ -235,14 +235,12 @@ MonoBehaviour:
   typeDescription: {fileID: 6067905486650395734}
   isHovering: 0
   timeToWait: 0.5
+  abilityTime: 1
   abilityUsed: 0
-  abilityName: Move Forward
+  abilityName: Move
   abilityPrice: 0
   abilityDescription: Move your tank forward
-  abilityTypeDescription: 'Starter
-
-
-    Can''t be destroyed or discarded'
+  abilityTypeDescription: Can't be destroyed or discarded
   type: 0
 --- !u!50 &2192560087069718184
 Rigidbody2D:

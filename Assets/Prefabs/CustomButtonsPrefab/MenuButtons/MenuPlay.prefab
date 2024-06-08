@@ -109,6 +109,7 @@ MonoBehaviour:
   parentAfterDrag: {fileID: 0}
   previousParent: {fileID: 0}
   draggable: 1
+  isDraged: 0
 --- !u!50 &8378260692058156921
 Rigidbody2D:
   serializedVersion: 4
@@ -150,13 +151,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   abilityText: {fileID: 3788115724681319180}
+  typeText: {fileID: 0}
   description: {fileID: 4208190794837305544}
+  typeDescription: {fileID: 0}
   isHovering: 0
   timeToWait: 0.5
   abilityUsed: 0
-  abilityName: MenuPlay
+  abilityName: Play
   abilityPrice: 0
   abilityDescription: Start new Game
+  abilityTypeDescription: 
   type: 0
 --- !u!1 &3788115724681319180
 GameObject:

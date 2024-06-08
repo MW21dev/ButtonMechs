@@ -80,6 +80,7 @@ MonoBehaviour:
   parentAfterDrag: {fileID: 0}
   previousParent: {fileID: 0}
   draggable: 1
+  isDraged: 0
 --- !u!114 &-1157582567950277897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,13 +95,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 0}
   abilityText: {fileID: 8467130239009780218}
+  typeText: {fileID: 0}
   description: {fileID: 8237912496541835144}
+  typeDescription: {fileID: 0}
   isHovering: 0
   timeToWait: 0.5
+  abilityTime: 1
   abilityUsed: 0
   abilityName: Flip
   abilityPrice: 2
   abilityDescription: Flip your tank in opposite direction
+  abilityTypeDescription: 
   type: 1
 --- !u!50 &7103329418612840732
 Rigidbody2D:
