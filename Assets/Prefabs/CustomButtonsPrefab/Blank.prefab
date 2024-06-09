@@ -129,7 +129,7 @@ MonoBehaviour:
   timeToWait: 0.5
   abilityTime: 1
   abilityUsed: 0
-  abilityName: '|Blank'
+  abilityName: Blank
   abilityPrice: 1
   abilityDescription: Do nothing
   abilityTypeDescription: 

@@ -236,7 +236,7 @@ MonoBehaviour:
   timeToWait: 0.5
   abilityTime: 1
   abilityUsed: 0
-  abilityName: Move Forward
+  abilityName: Forward
   abilityPrice: 1
   abilityDescription: Move your tank forward
   abilityTypeDescription: 

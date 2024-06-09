@@ -188,6 +188,8 @@ public class LevelManager : MonoBehaviour
 		shopPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
 		whiteMapCover.SetActive(true);
 
+		ShopManager.Instance.rerollCost = 1;
+
 		foreach (var slot in GameObject.FindGameObjectsWithTag("ShopSlot"))
 		{
 			ShopSlot shopSlot = slot.GetComponent<ShopSlot>();

@@ -102,7 +102,7 @@ MonoBehaviour:
   timeToWait: 0.5
   abilityTime: 1
   abilityUsed: 0
-  abilityName: Rotate Right
+  abilityName: Rotate
   abilityPrice: 2
   abilityDescription: Rotate your tank right
   abilityTypeDescription: 
