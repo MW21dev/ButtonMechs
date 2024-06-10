@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 
 
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager Instance;
 
+	public event Action OnStartTurn;
+	public event Action OnEndTurn;
 
 
 	public GameObject buttonsPanel;
@@ -137,6 +140,7 @@ public class GameManager : MonoBehaviour
 		
         buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
+		OnStartTurn?.Invoke();
 
         DrawButton(PlayerStats.Instance.drawCount);
 	}
@@ -154,6 +158,8 @@ public class GameManager : MonoBehaviour
 				module.UseAbility(PlayerStats.Instance);
             }
         }
+
+		OnEndTurn?.Invoke();
 
         StartCoroutine(NextAction(0));
 	}
@@ -303,7 +309,7 @@ public class GameManager : MonoBehaviour
 		{
             if (deckList.Count > 0)
             {
-                int rnd = Random.Range(0, deckList.Count);
+                int rnd = UnityEngine.Random.Range(0, deckList.Count);
                 AbilityButtonScript buttonToDraw = deckList[rnd].GetComponent<AbilityButtonScript>();
 
                 for (int j = 0; j < inventory.Count; j++)

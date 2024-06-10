@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class DiscardSlot : ButtonSlot, IDropHandler
 {
+    public static event Action OnDiscard;
     private new void Update()
     {
         if(eqquipedButton != null)
@@ -41,6 +43,8 @@ public class DiscardSlot : ButtonSlot, IDropHandler
             discardedButton.gameObject.transform.SetParent(GameManager.Instance.discard.transform, false);
         }
         
+        OnDiscard?.Invoke();
+
         eqquipedButton = null;
     }
 

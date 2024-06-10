@@ -31,7 +31,12 @@ public class EnemyBase : MonoBehaviour
     float timeLeft;
 
     public GameObject shotPoint;
+    public GameObject shotPoint2 = null;
+    public GameObject shotPoint3 = null;
+    public GameObject shotPoint4 = null;
+    public GameObject shotPointSpecial = null;
     public GameObject bullet;
+    public GameObject bullet2 = null;
     public GameObject explosion;
     public SpriteRenderer activeSprite;
 
@@ -63,7 +68,7 @@ public class EnemyBase : MonoBehaviour
         enemyNameText = enemyinfoPanel.transform.GetChild(1).GetComponent<TMP_Text>();
         enemyActionsText = enemyinfoPanel.transform.GetChild(2).GetComponent<TMP_Text>();
 
-
+        
         ability1Image = enemyAbilityList.transform.GetChild(0).gameObject;
         ability2Image = enemyAbilityList.transform.GetChild(1).gameObject;
         ability3Image = enemyAbilityList.transform.GetChild(2).gameObject;
@@ -207,7 +212,7 @@ public class EnemyBase : MonoBehaviour
         PlayerStats.Instance.playerCurrentMoney += 1;
         currentHealth -= damage;
 
-        if (currentHealth == 0 && !isDead)
+        if (currentHealth <= 0 && !isDead)
         {
             Invoke("Dead", 0.1f);
             isDead = true;

@@ -69,6 +69,8 @@ public class ScriptableObjectMap : ScriptableObject
 		{
 			None = 0,
 			BasicTank = 1,
+			OrbTank = 2,
+			SowerTank = 3,
 		}
 
 		public enum RotationType

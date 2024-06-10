@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1194121494161877099
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -65}
+  m_AnchoredPosition: {x: 0, y: 23}
   m_SizeDelta: {x: 96, y: 64}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6116127469453862811
@@ -85,9 +85,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1343574514911809134}
-  - component: {fileID: 3481413105643022143}
+  - component: {fileID: 3550639140936021543}
   m_Layer: 5
-  m_Name: ModuleSale
+  m_Name: ModuleDiscardCopy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 16, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3481413105643022143
+--- !u!114 &3550639140936021543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5024029025209333371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6340426159b4814bb7b0847fefeb08b, type: 3}
+  m_Script: {fileID: 11500000, guid: 886702b5638e94d44bed8d5bc43614ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 442604234225717341}
@@ -136,9 +136,9 @@ MonoBehaviour:
   abilityTime: 0
   timeLeft: 0
   abilityUsed: 0
-  abilityName: Sale
-  abilityPrice: 10
-  abilityDescription: Every button in shop costs one less
+  abilityName: Discard Copy
+  abilityPrice: 8
+  abilityDescription: The first button discarded by discarding on your turn is copied
 --- !u!1 &5497385716858681219
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: "Sale\n\n Every button in shop costs one less"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -188348072, guid: f12d8ccd50c063c4abb6b0e6c5431f1e, type: 3}
+  m_Sprite: {fileID: -71674360, guid: f12d8ccd50c063c4abb6b0e6c5431f1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

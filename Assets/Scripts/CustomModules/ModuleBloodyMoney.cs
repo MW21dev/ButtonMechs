@@ -44,23 +44,28 @@ public class ModuleBloodyMoney : AbilityModule
             abilityText.SetActive(false);
         }
 
-        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        if (!inShop)
         {
-            EnemyBase en = enemy.GetComponent<EnemyBase>();
-
-            if (!isUsed)
+            foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                EnemyBase.OnEnemyDestroy += EnemyDestroyed;
-                isUsed = true;
-            }
-            
+                EnemyBase en = enemy.GetComponent<EnemyBase>();
 
-            
+                if (!isUsed)
+                {
+                    EnemyBase.OnEnemyDestroy += EnemyDestroyed;
+                    isUsed = true;
+                }
+            }
         }
+        
     }
 
     void EnemyDestroyed()
     {
-        PlayerStats.Instance.playerCurrentMoney += (int)0.5f;
+        if (!inShop)
+        {
+            PlayerStats.Instance.playerCurrentMoney += (int)0.5f;
+            
+        }
     }
 }

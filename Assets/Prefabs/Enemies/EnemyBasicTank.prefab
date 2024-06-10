@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
 --- !u!50 &8382912875054556742
 Rigidbody2D:
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011836415debfce47a372be6c913203b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 1
   enemyName: Basic Tank
   isEnemyTurn: 0
   enemyActions: 2
@@ -192,7 +193,12 @@ MonoBehaviour:
   rayRange: 0.5
   viewRange: 10
   shotPoint: {fileID: 2808978806940639954}
+  shotPoint2: {fileID: 0}
+  shotPoint3: {fileID: 0}
+  shotPoint4: {fileID: 0}
+  shotPointSpecial: {fileID: 0}
   bullet: {fileID: 3764961782599655993, guid: 3af28f44d84d5d44b84cb751e48a46e5, type: 3}
+  bullet2: {fileID: 0}
   explosion: {fileID: 4924449807936888482, guid: af9b0206190d0a04c9f467dbcce3e596, type: 3}
   activeSprite: {fileID: 3477140080181152873}
   enemyinfoPanel: {fileID: 0}
@@ -313,8 +319,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: ecda333e6a341c34391497f552424798, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Sprite: {fileID: -784645341, guid: c3b107784a52c9346a47014477c9befd, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

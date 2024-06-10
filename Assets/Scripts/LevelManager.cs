@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
 	public GameObject raycastBlock;
 
 	public event Action OnShopEnter;
+	public event Action OnLaunchLevel;
 
 	[Header("MapGround")]
 	public GameObject[] groundPrefab;
@@ -42,6 +43,8 @@ public class LevelManager : MonoBehaviour
 
 	[Header("Enemies")]
 	public GameObject basicTankPrefab;
+	public GameObject orbTankPrefab;
+	public GameObject sowerTankPrefab;
 	
 
 	public bool isInLevel;
@@ -154,8 +157,10 @@ public class LevelManager : MonoBehaviour
 
 	public void LaunchLevel()
 	{
+		OnLaunchLevel?.Invoke();
 		SetMap(level);
 		GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
+
 	}
 
 	public void EndLevel()
@@ -281,11 +286,15 @@ public class LevelManager : MonoBehaviour
 			switch (obj.type)
 			{
 				case ScriptableObjectMap.MapEnemies.Type.BasicTank:
-
-					
 					Instantiate(basicTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
 					break;
-			}
+                case ScriptableObjectMap.MapEnemies.Type.OrbTank:
+                    Instantiate(orbTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
+                    break;
+                case ScriptableObjectMap.MapEnemies.Type.SowerTank:
+                    Instantiate(sowerTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
+                    break;
+            }
 		}
 
 		GameManager.Instance.CountEnemies();
