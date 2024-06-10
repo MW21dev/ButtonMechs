@@ -24,12 +24,34 @@ public class BuyText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         description.text = buyDescription;
         buyText.SetActive(false);
         price.text = "999" + "$";
+
+        var shopType = shopSlot.GetComponent<ShopSlot>().type;
+
+        if (shopType == ShopSlot.Type.button)
+        {
+            description.text = buyDescription;
+        }
+        else if (shopType == ShopSlot.Type.module)
+        {
+            description.text = "Buy Module:";
+        }
     }
     void Update()
     {
         if (shopSlot.transform.childCount > 0)
         {
-            price.text = shopSlot.transform.GetChild(0).GetComponent<AbilityButtonScript>().abilityPrice.ToString() + "$";
+            var shopType = shopSlot.GetComponent<ShopSlot>().type;
+
+            if (shopType == ShopSlot.Type.button)
+            {
+                price.text = shopSlot.transform.GetChild(0).GetComponent<AbilityButtonScript>().abilityPrice.ToString() + "$";
+            }
+            else if (shopType == ShopSlot.Type.module)
+            {
+                price.text = shopSlot.transform.GetChild(0).GetComponent<AbilityModule>().abilityPrice.ToString() + "$";
+            }
+
+
             if (isHovering)
             {
                 timeLeft -= Time.deltaTime;

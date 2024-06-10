@@ -155,7 +155,7 @@ MonoBehaviour:
   playerCurrentHp: 0
   playerMaxActions: 0
   playerCurrentActions: 0
-  playerDamage: 0
+  playerDamage: 1
   playerCurrentMoney: 3
   drawCount: 1
   isDead: 0

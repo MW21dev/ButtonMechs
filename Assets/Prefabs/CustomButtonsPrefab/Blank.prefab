@@ -128,9 +128,10 @@ MonoBehaviour:
   isHovering: 0
   timeToWait: 0.5
   abilityTime: 1
+  timeLeft: 0
   abilityUsed: 0
   abilityName: Blank
-  abilityPrice: 1
+  abilityPrice: 0
   abilityDescription: Do nothing
   abilityTypeDescription: 
   type: 1

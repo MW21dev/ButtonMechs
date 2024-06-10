@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ public class LevelManager : MonoBehaviour
 	public GameObject shopPanel;
 	public GameObject buttonsPanel;
 	public GameObject raycastBlock;
+
+	public event Action OnShopEnter;
 
 	[Header("MapGround")]
 	public GameObject[] groundPrefab;
@@ -188,13 +191,15 @@ public class LevelManager : MonoBehaviour
 		shopPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
 		whiteMapCover.SetActive(true);
 
-		ShopManager.Instance.rerollCost = 1;
+		ShopManager.Instance.rerollCost = ShopManager.Instance.startRerollCost;
 
 		foreach (var slot in GameObject.FindGameObjectsWithTag("ShopSlot"))
 		{
 			ShopSlot shopSlot = slot.GetComponent<ShopSlot>();
 			shopSlot.SetShopSlot();
 		}
+
+		OnShopEnter?.Invoke();
 	}
 
 	public void ExitShop()

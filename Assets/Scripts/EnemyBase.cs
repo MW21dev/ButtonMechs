@@ -5,9 +5,12 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using System;
 
 public class EnemyBase : MonoBehaviour
 {
+    public float currentHealth = 1;
+    
     public string enemyName;
     public bool isEnemyTurn = false;
     public int enemyActions;
@@ -16,6 +19,7 @@ public class EnemyBase : MonoBehaviour
     public bool isCounted;
     public bool canMove;
     public bool isFacingPlayer;
+    bool isDead;
 
     public LayerMask mask;
     public LayerMask viewMask;
@@ -50,6 +54,7 @@ public class EnemyBase : MonoBehaviour
     public Vector2 viewCheck;
     public Vector3 testRotation;
 
+    public static event Action OnEnemyDestroy;
     private void Awake()
     {
         enemyinfoPanel = GameObject.Find("EnemyPanelInfo");
@@ -200,9 +205,21 @@ public class EnemyBase : MonoBehaviour
         var explosionPrefab = Instantiate(explosion, transform.position, transform.rotation);
         Destroy(explosionPrefab, 0.2f);
         PlayerStats.Instance.playerCurrentMoney += 1;
-        GameManager.Instance.enemies.Remove(gameObject);
-        Destroy(gameObject, 0.2f);
+        currentHealth -= damage;
 
+        if (currentHealth == 0 && !isDead)
+        {
+            Invoke("Dead", 0.1f);
+            isDead = true;
+        }
+    }
+
+    public void Dead()
+    {
+        PlayerStats.Instance.playerCurrentMoney += 1;
+        GameManager.Instance.enemies.Remove(gameObject);
+        Destroy(gameObject);
+        OnEnemyDestroy?.Invoke(); 
     }
 
     public void OnMouseEnter()
@@ -222,7 +239,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (enemyActions > 0)
         {
-            int rnd = Random.Range(0, enemyAbilitiesCount);
+            int rnd = UnityEngine.Random.Range(0, enemyAbilitiesCount);
             switch (rnd)
             {
                 case 0:

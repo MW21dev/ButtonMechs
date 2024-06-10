@@ -19,7 +19,7 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 	public bool isHovering = false;
 	public float timeToWait = 0.5f;
 	public float abilityTime = 0f;
-	float timeLeft;
+	public float timeLeft;
 
 	public bool abilityUsed;
 	
@@ -46,7 +46,12 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	public Category type;
 
-	private void Start()
+    private void Awake()
+    {
+		abilityPrice = Mathf.Clamp(abilityPrice, 0, 100);
+    }
+
+    private void Start()
 	{
 		description.text = $"{abilityName}" + "\n" + "\n "+ $"{abilityDescription}";
 		abilityText.SetActive(false);
@@ -83,10 +88,11 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 			}
 		}
 
-		
-	}
+		abilityPrice = Mathf.Clamp(abilityPrice, 0, 100);
 
-	public virtual void UseAbility(PlayerStats player)
+    }
+
+    public virtual void UseAbility(PlayerStats player)
 	{
 		player = PlayerStats.Instance;
 		

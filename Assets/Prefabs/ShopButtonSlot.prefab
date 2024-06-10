@@ -115,5 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxChildCount: 1
   empty: 0
+  isDiscard: 0
   eqquipedButton: {fileID: 0}
   buyButton: {fileID: 0}
+  image: {fileID: 3812725723691230012}
+  type: 0

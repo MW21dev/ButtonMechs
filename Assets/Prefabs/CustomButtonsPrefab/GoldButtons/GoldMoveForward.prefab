@@ -236,9 +236,10 @@ MonoBehaviour:
   isHovering: 0
   timeToWait: 0.5
   abilityTime: 1
+  timeLeft: 0
   abilityUsed: 0
   abilityName: Move
-  abilityPrice: 3
+  abilityPrice: 4
   abilityDescription: Move your tank forward
   abilityTypeDescription: When played gain 1$
   type: 4

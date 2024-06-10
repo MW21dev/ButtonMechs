@@ -235,9 +235,10 @@ MonoBehaviour:
   isHovering: 0
   timeToWait: 0.5
   abilityTime: 1
+  timeLeft: 0
   abilityUsed: 0
   abilityName: Forward
-  abilityPrice: 1
+  abilityPrice: 2
   abilityDescription: Move your tank forward
   abilityTypeDescription: 
   type: 1

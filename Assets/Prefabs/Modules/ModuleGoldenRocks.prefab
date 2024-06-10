@@ -85,9 +85,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1343574514911809134}
-  - component: {fileID: 1752494181936404531}
+  - component: {fileID: -1832006441146341588}
   m_Layer: 5
-  m_Name: ModuleBase
+  m_Name: ModuleGoldenRocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 16, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1752494181936404531
+--- !u!114 &-1832006441146341588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,20 +123,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 5024029025209333371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d0056ef8c495c40b58f3cdf87ac5a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 412683f5b01374a4dab4bceed5cfbd7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 442604234225717341}
   abilityText: {fileID: 4480962972770031407}
   description: {fileID: 8785004018922691715}
   inShop: 1
+  bought: 0
   isHovering: 0
   timeToWait: 0.5
   abilityTime: 0
+  timeLeft: 0
   abilityUsed: 0
-  abilityName: Module
-  abilityPrice: 10
-  abilityDescription: Base
+  abilityName: Golden Rocks
+  abilityPrice: 7
+  abilityDescription: Whenever a rock is destroyed gain 1$
 --- !u!1 &5497385716858681219
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,8 +231,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
-  m_fontSizeBase: 8
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -336,7 +338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 206443425, guid: f12d8ccd50c063c4abb6b0e6c5431f1e, type: 3}
+  m_Sprite: {fileID: -491987968, guid: f12d8ccd50c063c4abb6b0e6c5431f1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -11,12 +11,14 @@ public class AbilityModule : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public GameObject abilityText;
     public TMP_Text description;
 
-
+    public bool inShop;
+    public bool bought;
+    
 
     public bool isHovering = false;
     public float timeToWait = 0.5f;
     public float abilityTime = 0f;
-    float timeLeft;
+    public float timeLeft;
 
     public bool abilityUsed;
 
@@ -26,11 +28,6 @@ public class AbilityModule : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [TextArea]
     public string abilityDescription;
-
-
-
-
-
 
     private void Start()
     {
@@ -48,6 +45,15 @@ public class AbilityModule : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (timeLeft <= 0)
         {
             abilityText.SetActive(true);
+            
+            if (inShop)
+            {
+                abilityText.transform.localPosition = new Vector3(abilityText.transform.localPosition.x, 15f, abilityText.transform.localPosition.z);
+            }
+            else
+            {
+                abilityText.transform.localPosition = new Vector3(abilityText.transform.localPosition.x, -75f, abilityText.transform.localPosition.z);
+            }
         }
 
         if (!isHovering)

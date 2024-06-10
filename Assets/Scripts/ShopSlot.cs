@@ -6,7 +6,16 @@ using UnityEngine.UI;
 public class ShopSlot : ButtonSlot
 {
     public Button buyButton;
+    public Image image;
     private Color defaultGreen;
+
+    public enum Type
+    {
+        button,
+        module,
+    }
+
+    public Type type;
 
     private void Start()
     {
@@ -28,15 +37,34 @@ public class ShopSlot : ButtonSlot
             empty = true;
         }
 
-        if (eqquipedButton != null && PlayerStats.Instance.playerCurrentMoney >= eqquipedButton.gameObject.GetComponent<AbilityButtonScript>().abilityPrice)
+        if (type == Type.button)
         {
-            buyButton.interactable = true;
-            buyButton.image.color = defaultGreen;
+            if (eqquipedButton != null && PlayerStats.Instance.playerCurrentMoney >= eqquipedButton.gameObject.GetComponent<AbilityButtonScript>().abilityPrice)
+            {
+                buyButton.interactable = true;
+                buyButton.image.color = defaultGreen;
+            }
+            else
+            {
+                buyButton.interactable = false;
+                buyButton.image.color = Color.gray;
+            }
         }
-        else
+        else if (type == Type.module)
         {
-            buyButton.interactable = false;
-            buyButton.image.color = Color.gray;
+            if (eqquipedButton != null && PlayerStats.Instance.playerCurrentMoney >= eqquipedButton.gameObject.GetComponent<AbilityModule>().abilityPrice)
+            {
+                buyButton.interactable = true;
+                buyButton.image.color = defaultGreen;
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+            }
+            else
+            {
+                buyButton.interactable = false;
+                buyButton.image.color = Color.gray;
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+
+            }
         }
 
        
@@ -49,37 +77,62 @@ public class ShopSlot : ButtonSlot
 
     public void SetShopSlot()
     {
-        int rnd = Random.Range(0, GameManager.Instance.shopButtons.Length);
+        int rndB = Random.Range(0, GameManager.Instance.shopButtons.Length);
+        int rndM = Random.Range(0, GameManager.Instance.shopModules.Count);
         
-        if (empty)
+        if(type == Type.button)
         {
-            Instantiate(GameManager.Instance.shopButtons[rnd], this.transform);
-            int childNmb = transform.childCount;
-            for (int i = 0; i < childNmb; i++)
+            if (empty)
             {
-                DragDrop buttonSlot = gameObject.transform.GetChild(i).GetComponent<DragDrop>();
-                buttonSlot.draggable = false;
+                var button = Instantiate(GameManager.Instance.shopButtons[rndB], this.transform);
+                int childNmb = transform.childCount;
+                for (int i = 0; i < childNmb; i++)
+                {
+                    DragDrop buttonSlot = gameObject.transform.GetChild(i).GetComponent<DragDrop>();
+                    buttonSlot.draggable = false;
+                }
+            }
+            else if (!empty)
+            {
+                Destroy(eqquipedButton.gameObject);
+                var button = Instantiate(GameManager.Instance.shopButtons[rndB], this.transform);
+                int childNmb = transform.childCount;
+                for (int i = 0; i < childNmb; i++)
+                {
+                    DragDrop buttonSlot = gameObject.transform.GetChild(i).GetComponent<DragDrop>();
+                    buttonSlot.draggable = false;
+                }
             }
         }
-        else
+        else if (type == Type.module)
         {
-            Destroy(eqquipedButton.gameObject);
-            Instantiate(GameManager.Instance.shopButtons[rnd], this.transform);
-            int childNmb = transform.childCount;
-            for (int i = 0; i < childNmb; i++)
+            if (empty)
             {
-                DragDrop buttonSlot = gameObject.transform.GetChild(i).GetComponent<DragDrop>();
-                buttonSlot.draggable = false;
+                var module = Instantiate(GameManager.Instance.shopModules[rndM], this.transform);
+                GameManager.Instance.shopModules.Remove(module);
             }
+            
         }
+
 
     }
 
     public void BuyButton()
     {
-        eqquipedButton.transform.SetParent(GameManager.Instance.deck.transform, false);
-        PlayerStats.Instance.playerCurrentMoney -= eqquipedButton.gameObject.GetComponent<AbilityButtonScript>().abilityPrice;
-        GameManager.Instance.UpdateDeck();
+        
+        if(type == Type.button)
+        {
+            eqquipedButton.transform.SetParent(GameManager.Instance.deck.transform, false);
+            PlayerStats.Instance.playerCurrentMoney -= eqquipedButton.gameObject.GetComponent<AbilityButtonScript>().abilityPrice;
+            GameManager.Instance.UpdateDeck();
+
+        }
+        else if (type == Type.module)
+        {
+            eqquipedButton.transform.SetParent(GameManager.Instance.modules.transform, false);
+            PlayerStats.Instance.playerCurrentMoney -= eqquipedButton.gameObject.GetComponent<AbilityModule>().abilityPrice;
+            GameManager.Instance.UpdateModules();
+        }
 
     }
 }

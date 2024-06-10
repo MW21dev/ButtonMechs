@@ -20,12 +20,14 @@ public class GameManager : MonoBehaviour
 	public GameObject[] allAbilityButtons;
 
 	public GameObject[] shopButtons;
+	public List<GameObject> shopModules;
 
 	public List<GameObject> enemies;
 	public List<AbilityButtonScript> deckList;
 	public List<AbilityButtonScript> startDeck;
 	public List<GameObject> inventory;
 	public List<AbilityButtonScript> discardList;
+	public List<AbilityModule> moduleList;
 
 	public TMP_Text deckCountText;
 	public TMP_Text discardCountText;
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
 	public GameObject deck;
 	public GameObject discard;
 	public GameObject enemyInfoPanel;
+	public GameObject modules;
 	public int deckCount;
 	public int discardCount;
 
@@ -122,6 +125,8 @@ public class GameManager : MonoBehaviour
 		{
 			debugShopKey();
 		}
+
+		
 	}
 
 	public void StartTurn()
@@ -139,6 +144,16 @@ public class GameManager : MonoBehaviour
 	public void EndTurn()
 	{
 		buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        if (modules.transform.childCount > 0)
+        {
+            int childNmb = modules.transform.childCount;
+            for (int i = 0; i < childNmb; i++)
+            {
+                AbilityModule module = modules.transform.GetChild(i).GetComponent<AbilityModule>();
+				module.UseAbility(PlayerStats.Instance);
+            }
+        }
 
         StartCoroutine(NextAction(0));
 	}
@@ -171,6 +186,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		ability.UseAbility(PlayerStats.Instance);
+		ability.abilityUsed = true;
 		
 		if(ability.type != AbilityButtonScript.Category.starter)
 		{
@@ -222,6 +238,11 @@ public class GameManager : MonoBehaviour
 			bulb.GetComponent<Image>().sprite = bulbOff;
 		}
 
+		foreach (var button in GameObject.FindObjectsOfType<AbilityButtonScript>())
+		{
+			button.abilityUsed = false;
+		}
+
 		CountEnemies();
 		
 		if(enemies.Count > 0)
@@ -263,6 +284,19 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(DiscardToDeck(allDiscard));
 	}
 
+	public void UpdateModules()
+	{
+		int childnum = modules.transform.childCount;
+
+		moduleList.Clear();
+
+		for (int i = 0; i < childnum; i++)
+		{
+			AbilityModule module = modules.transform.GetChild(i).GetComponent<AbilityModule>();
+			moduleList.Add(module);
+		}
+    }
+
 	public IEnumerator DrawingButtons(int drawCount)
 	{
 		for (int i = drawCount; i > 0; i--)
@@ -288,6 +322,7 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds(0.2f);
         }
     }
+
 
 	public IEnumerator DiscardToDeck(int discardToDeck)
 	{ 
