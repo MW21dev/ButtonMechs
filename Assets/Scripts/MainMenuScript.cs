@@ -11,6 +11,10 @@ public class MainMenuScript : MonoBehaviour
 
     public Color defaultGreen;
 
+    public GameObject whitePanel;
+    public GameObject creditsPanel;
+    public GameObject settingsPanel;
+
     private void Start()
     {
         defaultGreen = new Color(0.1768868f, 0.7075472f, 0.2922177f);
@@ -36,5 +40,22 @@ public class MainMenuScript : MonoBehaviour
         AbilityButtonScript buttonAbility = menuUseButtonSlot.eqquipedButton.gameObject.GetComponent<AbilityButtonScript>();
 
         buttonAbility.UseMenuAbility();
+    }
+
+    public void ClosePanel()
+    {
+        if(settingsPanel.GetComponent<CanvasGroup>().alpha == 1f)
+        {
+            settingsPanel.GetComponent<CanvasGroup>().alpha = 0f;
+            settingsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            whitePanel.GetComponent<CanvasGroup>().alpha = 0f;
+        }
+        else if(creditsPanel.GetComponent<CanvasGroup>().alpha == 1f)
+        {
+            creditsPanel.GetComponent<CanvasGroup>().alpha = 0f;
+            creditsPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            whitePanel.GetComponent<CanvasGroup>().alpha = 0f;
+
+        }
     }
 }

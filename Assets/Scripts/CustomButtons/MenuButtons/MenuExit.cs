@@ -6,11 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class MenuExit : AbilityButtonScript
 {
+    private TurnOnAnimation animation;
+    
+    private void Awake()
+    {
+        animation = GameObject.FindAnyObjectByType<TurnOnAnimation>();
+    }
+
     public override void UseMenuAbility()
     {
-        Application.Quit();
-#if UNITY_EDITOR
-        EditorApplication.isPlaying = false;
-#endif
+        animation.gameObject.SetActive(true);
+        animation.LaunchTurnOff();
     }
 }

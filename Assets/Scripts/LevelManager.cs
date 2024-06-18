@@ -45,9 +45,11 @@ public class LevelManager : MonoBehaviour
 	public GameObject basicTankPrefab;
 	public GameObject orbTankPrefab;
 	public GameObject sowerTankPrefab;
-	
+	public GameObject shieldTankPrefab;
 
-	public bool isInLevel;
+
+
+    public bool isInLevel;
 	public bool isInShop;
 
 	
@@ -293,6 +295,9 @@ public class LevelManager : MonoBehaviour
                     break;
                 case ScriptableObjectMap.MapEnemies.Type.SowerTank:
                     Instantiate(sowerTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
+                    break;
+                case ScriptableObjectMap.MapEnemies.Type.ShieldTank:
+                    Instantiate(shieldTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
                     break;
             }
 		}

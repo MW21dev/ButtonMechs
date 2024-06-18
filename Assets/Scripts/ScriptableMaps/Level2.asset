@@ -21,5 +21,8 @@ MonoBehaviour:
   - pos: {x: 7, y: 5}
     type: 3
     rotType: 0
+  - pos: {x: 3, y: 5}
+    type: 4
+    rotType: 0
   playerPos: {x: 0, y: 0}
   playerRot: 0

@@ -141,7 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rerollCost: 1
+  startRerollCost: 1
   rerollButton: {fileID: 0}
+  rerollText: {fileID: 0}
 --- !u!1 &1484312977712747636
 GameObject:
   m_ObjectHideFlags: 0
