@@ -26,5 +26,7 @@ public class EnemyRotateAndShot : EnemyAbilityButton
 
         }
 
+        SoundManager.Instance.PlayUISound(4);
+
     }
 }

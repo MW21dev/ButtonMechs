@@ -212,6 +212,9 @@ public class EnemyBase : MonoBehaviour
         PlayerStats.Instance.playerCurrentMoney += 1;
         currentHealth -= damage;
 
+        SoundManager.Instance.PlayUISound(4);
+
+
         if (currentHealth <= 0 && !isDead)
         {
             Invoke("Dead", 0.1f);

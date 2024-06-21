@@ -59,6 +59,12 @@ MonoBehaviour:
   - pos: {x: 3, y: 1}
     type: 7
     rot: 0
+  - pos: {x: 0, y: 3}
+    type: 1
+    rot: 0
+  - pos: {x: 8, y: 6}
+    type: 8
+    rot: 0
   mapEnemies:
   - pos: {x: 1, y: 9}
     type: 1
@@ -66,7 +72,7 @@ MonoBehaviour:
   - pos: {x: 6, y: 4}
     type: 1
     rotType: 180
-  - pos: {x: 8, y: 2}
+  - pos: {x: 8, y: 8}
     type: 1
     rotType: 90
   playerPos: {x: 0, y: 0}

@@ -69,10 +69,6 @@ public class ShopSlot : ButtonSlot
 
        
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SetShopSlot();
-        }
     }
 
     public void SetShopSlot()
@@ -108,10 +104,20 @@ public class ShopSlot : ButtonSlot
         {
             if (empty)
             {
-                var module = Instantiate(GameManager.Instance.shopModules[rndM], this.transform);
-                GameManager.Instance.shopModules.Remove(module);
+                if(GameManager.Instance.shopModules.Count != 0)
+                {
+                    var module = Instantiate(GameManager.Instance.shopModules[rndM], this.transform);
+                    GameManager.Instance.shopModules.Remove(module);
+                }
+                
             }
-            
+            else if (!empty)
+            {
+                Destroy(eqquipedButton.gameObject);
+                var button = Instantiate(GameManager.Instance.shopModules[rndM], this.transform);
+                
+            }
+
         }
 
 
@@ -122,17 +128,32 @@ public class ShopSlot : ButtonSlot
         
         if(type == Type.button)
         {
-            eqquipedButton.transform.SetParent(GameManager.Instance.deck.transform, false);
             PlayerStats.Instance.playerCurrentMoney -= eqquipedButton.gameObject.GetComponent<AbilityButtonScript>().abilityPrice;
+            eqquipedButton.transform.SetParent(GameManager.Instance.deck.transform, false);
             GameManager.Instance.UpdateDeck();
 
         }
         else if (type == Type.module)
         {
-            eqquipedButton.transform.SetParent(GameManager.Instance.modules.transform, false);
             PlayerStats.Instance.playerCurrentMoney -= eqquipedButton.gameObject.GetComponent<AbilityModule>().abilityPrice;
+            string n = eqquipedButton.gameObject.GetComponent<AbilityModule>().abilityName;
+            
+            foreach (var item in GameManager.Instance.shopModules)
+            {
+                if (item.GetComponent<AbilityModule>().abilityName == n)
+                {
+                    GameManager.Instance.shopModules.Remove(item);
+                    break;
+                }
+            }
+
+            eqquipedButton.transform.SetParent(GameManager.Instance.modules.transform, false);
             GameManager.Instance.UpdateModules();
+
         }
+
+        SoundManager.Instance.PlayUISound(6);
+
 
     }
 }

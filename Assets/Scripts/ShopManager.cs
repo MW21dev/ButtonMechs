@@ -68,6 +68,9 @@ public class ShopManager : MonoBehaviour
 			rerollCost += 1;
 		}
 
-		OnReroll?.Invoke();
+        SoundManager.Instance.PlayUISound(0);
+
+
+        OnReroll?.Invoke();
 	}
 }

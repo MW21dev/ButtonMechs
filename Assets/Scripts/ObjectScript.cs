@@ -25,9 +25,12 @@ public class ObjectScript : MonoBehaviour
 			objCurrentHealth -= damage;
 			var explosionPrefab = Instantiate(explosion, transform.position, Quaternion.identity);
 			Destroy(explosionPrefab, 0.2f);
-		}
 
-		if (objCurrentHealth == 0 && destructable)
+            SoundManager.Instance.PlayUISound(4);
+
+        }
+
+        if (objCurrentHealth == 0 && destructable)
 		{
 			Invoke("Dead", 0.1f);
 		}

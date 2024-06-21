@@ -38,6 +38,8 @@ public class LandMine : MapPickUp
                 else if (i == repeats - 1)
                 {
                     spriteRenderer.sprite = explode;
+                    SoundManager.Instance.PlayUISound(5);
+
                     Invoke("ExplodeDestroy", 0.2f);
 
                     if (isOnTile)

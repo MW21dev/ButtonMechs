@@ -154,13 +154,19 @@ public class LevelManager : MonoBehaviour
             }
         }
 
+		foreach( var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+		{
+			Destroy(enemy);
+		}
+
         SetMap(level);
     }
 
 	public void LaunchLevel()
 	{
+		int rnd = UnityEngine.Random.Range(0, levels.Length - 1);
 		OnLaunchLevel?.Invoke();
-		SetMap(level);
+		SetMap(rnd);
 		GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
 
 	}

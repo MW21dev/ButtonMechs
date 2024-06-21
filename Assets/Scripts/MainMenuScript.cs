@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEditor.SearchService;
+using System;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -15,10 +18,17 @@ public class MainMenuScript : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject settingsPanel;
 
+    public TMP_Text versionText;
+
+    public string version;
+
     private void Start()
     {
         defaultGreen = new Color(0.1768868f, 0.7075472f, 0.2922177f);
 
+        UnityEditor.PlayerSettings.bundleVersion = version;
+
+        versionText.SetText("V" + version);
     }
 
     private void Update()
@@ -40,6 +50,7 @@ public class MainMenuScript : MonoBehaviour
         AbilityButtonScript buttonAbility = menuUseButtonSlot.eqquipedButton.gameObject.GetComponent<AbilityButtonScript>();
 
         buttonAbility.UseMenuAbility();
+        SoundManager.Instance.PlayUISound(0);
     }
 
     public void ClosePanel()
@@ -57,5 +68,8 @@ public class MainMenuScript : MonoBehaviour
             whitePanel.GetComponent<CanvasGroup>().alpha = 0f;
 
         }
+        
+        SoundManager.Instance.PlayUISound(0);
+
     }
 }

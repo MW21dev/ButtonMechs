@@ -51,8 +51,11 @@ public class PlayerStats : MonoBehaviour
         var explosionPrefab = Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(explosionPrefab, 0.2f);
         UIScript.Instance.ChangeHp(playerCurrentHp);
-        
-        if(playerCurrentHp == 0)
+
+        SoundManager.Instance.PlayUISound(4);
+
+
+        if (playerCurrentHp == 0)
         {
             Invoke("Dead", 0.1f);
         }

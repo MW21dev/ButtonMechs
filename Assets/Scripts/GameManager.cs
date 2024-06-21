@@ -119,10 +119,7 @@ public class GameManager : MonoBehaviour
 		deckCountText.text = deckCount.ToString();
 		discardCountText.text = discardCount.ToString();
 
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			UpdateDiscard(discardList.Count);
-		}
+		
 
 		if (Input.GetKeyDown(KeyCode.P))
 		{
@@ -162,9 +159,12 @@ public class GameManager : MonoBehaviour
 		OnEndTurn?.Invoke();
 
         StartCoroutine(NextAction(0));
-	}
 
-	public void StartEnemyTurn()
+        
+
+    }
+
+    public void StartEnemyTurn()
 	{
 		enemyTurn = true;
 		playerTurn = false;

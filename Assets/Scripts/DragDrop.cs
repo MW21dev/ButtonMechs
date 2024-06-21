@@ -12,6 +12,7 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 	public Transform parentAfterDrag;
 	public Transform previousParent;
 	private CanvasGroup canvasGroup;
+	
 
 	public bool draggable = true;
 	public bool isDraged = false;
@@ -20,6 +21,7 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 	private void Awake()
 	{
 		canvasGroup = GetComponent<CanvasGroup>();
+
 	}
 
 	private void Update()
@@ -48,9 +50,12 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
+
+            SoundManager.Instance.PlayUISound(1);
+
         }
 
-		
+
     }
 		
 	
@@ -61,6 +66,8 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 		{
 			isDraged = true;
 			transform.position = Input.mousePosition;
+
+			
 		}
 
        
@@ -76,6 +83,9 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
             canvasGroup.blocksRaycasts = true;
             imageBody.raycastTarget = true;
 			imageIcon.raycastTarget = true;
+
+            SoundManager.Instance.PlayUISound(2);
+
         }
 
     }

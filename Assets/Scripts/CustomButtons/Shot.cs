@@ -12,5 +12,8 @@ public class Shot : AbilityButtonScript
     {
         shotPoint = GameObject.Find("ShotPoint");
         Instantiate(bullet, shotPoint.transform.position, shotPoint.transform.rotation);
+
+        SoundManager.Instance.PlayUISound(3);
+
     }
 }

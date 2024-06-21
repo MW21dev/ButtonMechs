@@ -36,6 +36,7 @@ public class TurnOnAnimation : MonoBehaviour
 
             if(i == images.Length - 1)
             {
+                SoundManager.Instance.PlayMusicSound(0);
                 gameObject.SetActive(false);
             }
 
