@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 	public GameObject discard;
 	public GameObject enemyInfoPanel;
 	public GameObject modules;
+	public GameObject tutorial;
 	public int deckCount;
 	public int discardCount;
 
@@ -55,9 +56,11 @@ public class GameManager : MonoBehaviour
 	public bool playerTurn;
 	public bool enemyTurn;
 	public bool shopTurn;
+	public bool isUsed;
 
 	public int maxEnemyActions;
 
+	public int isTutorial;
 
 
 	private void Awake()
@@ -70,7 +73,8 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-	
+
+		
 	}
 
 	private void Start()
@@ -78,7 +82,19 @@ public class GameManager : MonoBehaviour
 		playerTurn = true;
 		enemyTurn = false;
 
-		buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        SaveScript.Instance.LoadGame();
+
+
+        if (isTutorial == 0)
+		{
+			tutorial.SetActive(true);
+		}
+		else
+		{
+            tutorial.SetActive(false);
+        }
+
+        buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
 		enemyInfoPanel.GetComponent<CanvasGroup>().alpha = 0f;
 
 		CreateStartDeck();
@@ -139,6 +155,8 @@ public class GameManager : MonoBehaviour
 
 		OnStartTurn?.Invoke();
 
+		isUsed = false;
+
         DrawButton(PlayerStats.Instance.drawCount);
 	}
 
@@ -157,6 +175,8 @@ public class GameManager : MonoBehaviour
         }
 
 		OnEndTurn?.Invoke();
+
+		isUsed = true;
 
         StartCoroutine(NextAction(0));
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.SearchService;
 using System;
 
 public class MainMenuScript : MonoBehaviour
@@ -26,7 +25,8 @@ public class MainMenuScript : MonoBehaviour
     {
         defaultGreen = new Color(0.1768868f, 0.7075472f, 0.2922177f);
 
-        UnityEditor.PlayerSettings.bundleVersion = version;
+        
+
 
         versionText.SetText("V" + version);
     }

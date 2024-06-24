@@ -74,14 +74,14 @@ public class UIScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (GameManager.Instance.playerTurn)
+		if (GameManager.Instance.playerTurn && !GameManager.Instance.isUsed)
 		{
 			yourTurn.enabled = true;
 			enemiesTurn.enabled = false;
 			endTurnButton.interactable = true;
 			endTurnButton.image.color = defaultGreen;
 		}
-		else if (GameManager.Instance.enemyTurn)
+		else if (GameManager.Instance.enemyTurn || GameManager.Instance.playerTurn && GameManager.Instance.isUsed)
 		{
 			enemiesTurn.enabled = true;
 			yourTurn.enabled = false;
