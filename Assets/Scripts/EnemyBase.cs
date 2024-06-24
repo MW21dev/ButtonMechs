@@ -51,6 +51,7 @@ public class EnemyBase : MonoBehaviour
 
     public TMP_Text enemyNameText;
     public TMP_Text enemyActionsText;
+    public TMP_Text enemyHealthText;
     public GameObject ability1Image;
     public GameObject ability2Image;
     public GameObject ability3Image;
@@ -67,6 +68,7 @@ public class EnemyBase : MonoBehaviour
         deckPanel = GameObject.Find("DeckPanel");
         enemyNameText = enemyinfoPanel.transform.GetChild(1).GetComponent<TMP_Text>();
         enemyActionsText = enemyinfoPanel.transform.GetChild(2).GetComponent<TMP_Text>();
+        enemyHealthText = enemyinfoPanel.transform.GetChild(3).GetComponent<TMP_Text>();
 
         
         ability1Image = enemyAbilityList.transform.GetChild(0).gameObject;
@@ -117,6 +119,7 @@ public class EnemyBase : MonoBehaviour
             ab3text.text = enemyability3.GetComponent<EnemyAbilityButton>().abilityDescription;
 
             enemyNameText.text = enemyName;
+            enemyHealthText.text = currentHealth.ToString();
             enemyActionsText.text = maxEnemyActions.ToString();
 
             Debug.Log("OnEnemy");

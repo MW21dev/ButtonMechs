@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
 
 		
 
-		if (Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.F11))
 		{
 			debugShopKey();
 		}
@@ -421,4 +421,6 @@ public class GameManager : MonoBehaviour
 			Destroy(e);
 		}
 	}
+
+	
 }

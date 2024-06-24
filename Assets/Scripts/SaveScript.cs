@@ -29,12 +29,12 @@ public class SaveScript : MonoBehaviour
 
 	public void SaveGame()
 	{
-		PlayerPrefs.SetInt("RecordScore", GameManager.Instance.isTutorial);
+		PlayerPrefs.SetInt("Tutorial", GameManager.Instance.isTutorial);
 	}
 
 	public void LoadGame()
 	{
-		GameManager.Instance.isTutorial = PlayerPrefs.GetInt("RecordScore");
+		GameManager.Instance.isTutorial = PlayerPrefs.GetInt("Tutorial");
 	}
 
 	public void ResetSave()

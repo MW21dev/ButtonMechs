@@ -44,4 +44,9 @@ public class SoundManager : MonoBehaviour
         audioSource.clip = uISounds[sound];
         audioSource.Play();
     }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
 }

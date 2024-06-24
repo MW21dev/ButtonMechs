@@ -126,10 +126,7 @@ public class LevelManager : MonoBehaviour
 			
 		}
 
-		if (Input.GetKeyUp(KeyCode.L))
-		{
-			ExitShop();
-		}
+		
 	}
 
 	public void ReloadLevel()
@@ -164,10 +161,20 @@ public class LevelManager : MonoBehaviour
 
 	public void LaunchLevel()
 	{
-		int rnd = UnityEngine.Random.Range(0, levels.Length - 1);
-		OnLaunchLevel?.Invoke();
-		SetMap(rnd);
-		GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
+		if (GameManager.Instance.isTutorial == 0)
+		{
+            OnLaunchLevel?.Invoke();
+            SetMap(0);
+            GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
+        }
+		else
+		{
+            int rnd = UnityEngine.Random.Range(1, levels.Length - 1);
+            OnLaunchLevel?.Invoke();
+            SetMap(rnd);
+            GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
+        }
+		
 
 	}
 
@@ -196,6 +203,7 @@ public class LevelManager : MonoBehaviour
 			}
 		}
 
+		GameManager.Instance.isUsed = false;
 	}
 
 	public void OpenShop()

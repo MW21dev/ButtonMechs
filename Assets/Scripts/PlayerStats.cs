@@ -36,7 +36,15 @@ public class PlayerStats : MonoBehaviour
        
     }
 
-    
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.F9))
+        {
+            GetHit(1);
+        }
+    }
+
+
 
     public void SetHealth()
     {
@@ -57,7 +65,7 @@ public class PlayerStats : MonoBehaviour
 
         if (playerCurrentHp == 0)
         {
-            Invoke("Dead", 0.1f);
+            Invoke("Dead", 0.3f);
         }
 
         
@@ -75,6 +83,9 @@ public class PlayerStats : MonoBehaviour
     }
     public void Dead()
     {
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        SoundManager.Instance.StopMusic();
+        SoundManager.Instance.PlayUISound(7);
+        var a = GameObject.FindAnyObjectByType<DeadAnimation>();
+        a.LaunchTurnOn();
     }
 }

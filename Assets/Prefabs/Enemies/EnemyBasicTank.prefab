@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!50 &8382912875054556742
 Rigidbody2D:
@@ -209,6 +209,7 @@ MonoBehaviour:
   enemyability3: {fileID: 2969265279179720284, guid: ea9592198d526b44da3bd391921b399a, type: 3}
   enemyNameText: {fileID: 0}
   enemyActionsText: {fileID: 0}
+  enemyHealthText: {fileID: 0}
   ability1Image: {fileID: 0}
   ability2Image: {fileID: 0}
   ability3Image: {fileID: 0}

@@ -13,7 +13,7 @@ public class TutorialManager : MonoBehaviour
 
 	private void Awake()
 	{
-		if(Instance == null)
+		if (Instance == null)
 		{
 			Instance = this;
 		}
@@ -27,22 +27,22 @@ public class TutorialManager : MonoBehaviour
 
 	private void Update()
 	{
-		for(i = 0; i < popUps.Length; i++)
+		for (i = 0; i < popUps.Length; i++)
 		{
-			if(i == popUpIndex)
+			if (i == popUpIndex)
 			{
 				popUps[popUpIndex].SetActive(true);
 				return;
 			}
-			
+
 			if (i != popUpIndex)
 			{
-				popUps[popUpIndex -1].SetActive(false);
+				popUps[popUpIndex - 1].SetActive(false);
 			}
 		}
 
 
-		if(popUpIndex == popUps.Length)
+		if (popUpIndex == popUps.Length)
 		{
 			blur.SetActive(false);
 		}
@@ -50,16 +50,14 @@ public class TutorialManager : MonoBehaviour
 
 	public void NextPopUp()
 	{
+		SoundManager.Instance.PlayUISound(0);
 		popUpIndex++;
-		SoundManager.Instance.PlayUISound(0);
 
-	}
-
-	public void ExitToMenu()
-	{
-		GameManager.Instance.isTutorial = 1;
-        SaveScript.Instance.SaveGame();
-		SceneManager.LoadScene("Menu", LoadSceneMode.Single);
-		SoundManager.Instance.PlayUISound(0);
+		if (popUpIndex == popUps.Length -1)
+		{
+			GameManager.Instance.isTutorial = 1;
+			SaveScript.Instance.SaveGame();
+		}
+		
 	}
 }

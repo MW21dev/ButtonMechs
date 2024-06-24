@@ -81,13 +81,19 @@ public class UIScript : MonoBehaviour
 			endTurnButton.interactable = true;
 			endTurnButton.image.color = defaultGreen;
 		}
-		else if (GameManager.Instance.enemyTurn || GameManager.Instance.playerTurn && GameManager.Instance.isUsed)
+		else if (GameManager.Instance.enemyTurn)
 		{
 			enemiesTurn.enabled = true;
 			yourTurn.enabled = false;
 			endTurnButton.interactable = false;
 			endTurnButton.image.color = Color.gray;
 		}
+
+		if(GameManager.Instance.playerTurn && GameManager.Instance.isUsed)
+		{
+            endTurnButton.interactable = false;
+            endTurnButton.image.color = Color.gray;
+        }
 
 		if (GameManager.Instance.playerTurn)
 		{
