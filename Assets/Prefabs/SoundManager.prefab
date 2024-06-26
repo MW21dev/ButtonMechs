@@ -151,6 +151,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f968a2a54753d204ba06353eded5cbf9, type: 3}
   - {fileID: 8300000, guid: 48b943a697d96444ab9c57119c2a03d7, type: 3}
   - {fileID: 8300000, guid: cf8debe31602bb44ba5aa5161cd4e31e, type: 3}
+  - {fileID: 8300000, guid: 0b96d7aeaf89f5442961adea1488875e, type: 3}
+  - {fileID: 8300000, guid: 13476418b691ecb41859193e300725d1, type: 3}
   gameSounds: []
   tracks:
   - {fileID: 8300000, guid: ec05defe8c705094c8948971b6ca9dfd, type: 3}

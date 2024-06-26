@@ -130,13 +130,14 @@ MonoBehaviour:
   abilityText: {fileID: 4480962972770031407}
   description: {fileID: 8785004018922691715}
   inShop: 1
+  bought: 0
   isHovering: 0
   timeToWait: 0.5
   abilityTime: 0
   timeLeft: 0
   abilityUsed: 0
   abilityName: B.R.B
-  abilityPrice: 10
+  abilityPrice: 5
   abilityDescription: If you play three Blank Buttons in one turn destroy random
     enemy
   b: []
@@ -342,7 +343,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2090145089, guid: f12d8ccd50c063c4abb6b0e6c5431f1e, type: 3}
+  m_Sprite: {fileID: 1654087884, guid: 2248f04d0e33a8844bb23ad675f88392, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

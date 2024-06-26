@@ -28,7 +28,12 @@ public class ShopSlot : ButtonSlot
         {
             eqquipedButton = transform.GetChild(0).gameObject;
             empty = false;
-
+            
+            if(type == Type.button)
+            {
+               eqquipedButton.GetComponent<DragDrop>().draggable = false;
+            }
+            
             
         }
         else
@@ -67,7 +72,7 @@ public class ShopSlot : ButtonSlot
             }
         }
 
-       
+        
 
     }
 

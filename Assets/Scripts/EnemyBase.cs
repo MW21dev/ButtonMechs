@@ -212,7 +212,7 @@ public class EnemyBase : MonoBehaviour
         
         var explosionPrefab = Instantiate(explosion, transform.position, transform.rotation);
         Destroy(explosionPrefab, 0.2f);
-        PlayerStats.Instance.playerCurrentMoney += 1;
+        
         currentHealth -= damage;
 
         SoundManager.Instance.PlayUISound(4);
@@ -230,6 +230,7 @@ public class EnemyBase : MonoBehaviour
         PlayerStats.Instance.playerCurrentMoney += 1;
         GameManager.Instance.enemies.Remove(gameObject);
         Destroy(gameObject);
+
         OnEnemyDestroy?.Invoke(); 
     }
 

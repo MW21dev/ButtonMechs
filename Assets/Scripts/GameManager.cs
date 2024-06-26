@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
 
 	public int isTutorial;
 
+	public int gameSpeed;
+
 
 	private void Awake()
 	{
@@ -113,22 +115,27 @@ public class GameManager : MonoBehaviour
 			playerTurn = false;
 		}
 
-		if (enemyTurn)
+
+		if (!LevelManager.Instance.isInShop)
 		{
-			foreach (var button in GameObject.FindGameObjectsWithTag("Button"))
-			{
-				DragDrop dragDrop = button.GetComponent<DragDrop>();
-				dragDrop.draggable = false;
-			}
-		}
-		else
-		{
-			foreach (var button in GameObject.FindGameObjectsWithTag("Button"))
-			{
-				DragDrop dragDrop = button.GetComponent<DragDrop>();
-				dragDrop.draggable = true;
-			}
-		}
+            if (enemyTurn)
+            {
+                foreach (var button in GameObject.FindGameObjectsWithTag("Button"))
+                {
+                    DragDrop dragDrop = button.GetComponent<DragDrop>();
+                    dragDrop.draggable = false;
+                }
+            }
+            else if (playerTurn)
+            {
+                foreach (var button in GameObject.FindGameObjectsWithTag("Button"))
+                {
+                    DragDrop dragDrop = button.GetComponent<DragDrop>();
+                    dragDrop.draggable = true;
+                }
+            }
+        }
+		
 
 		deckCount = deckList.Count;
 		discardCount = discardList.Count;
@@ -213,19 +220,28 @@ public class GameManager : MonoBehaviour
 
 		ability.UseAbility(PlayerStats.Instance);
 		ability.abilityUsed = true;
-		
-		if(ability.type != AbilityButtonScript.Category.starter)
-		{
-			discardList.Add(ability);
-			ability.gameObject.transform.SetParent(discard.transform, false);
-			slot.eqquipedButton = null;
 
-		}
-		
-		if(ability.type == AbilityButtonScript.Category.gold)
+		switch (ability.type)
 		{
-			PlayerStats.Instance.playerCurrentMoney += 1;
-		}
+			case AbilityButtonScript.Category.normal:
+                discardList.Add(ability);
+                ability.gameObject.transform.SetParent(discard.transform, false);
+                slot.eqquipedButton = null;
+                break;
+            case AbilityButtonScript.Category.starter:
+				break;
+			case AbilityButtonScript.Category.glass:
+                SoundManager.Instance.PlayUISound(9);
+                Destroy(slot.eqquipedButton);
+                slot.eqquipedButton = null;
+				break;
+			case AbilityButtonScript.Category.gold:
+                PlayerStats.Instance.playerCurrentMoney += 1;
+                discardList.Add(ability);
+                ability.gameObject.transform.SetParent(discard.transform, false);
+                slot.eqquipedButton = null;
+				break;
+        }
 	}
 
 
@@ -422,5 +438,19 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void ChangeGameSpeed()
+	{
+        SoundManager.Instance.PlayUISound(0);
+
+        if (Time.timeScale == 1)
+		{
+			Time.timeScale = gameSpeed;
+		}
+		else
+		{
+			Time.timeScale = 1;
+		}
+		
+	}
 	
 }

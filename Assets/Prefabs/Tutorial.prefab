@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 7438918658601563844}
   - component: {fileID: 3299471774531828622}
   - component: {fileID: 9085116665494046440}
+  - component: {fileID: 655427262116209711}
   m_Layer: 5
   m_Name: Blur
   m_TagString: Untagged
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -179,6 +180,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &655427262116209711
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080274801505477484}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &62265845183991831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1725,11 +1738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1754718840644178171, guid: 00f2ecc685e76b14e8faeb7fe71a4a99, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 1754718840644178171, guid: 00f2ecc685e76b14e8faeb7fe71a4a99, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -54
       objectReference: {fileID: 0}
     - target: {fileID: 1754718840644178171, guid: 00f2ecc685e76b14e8faeb7fe71a4a99, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1848,11 +1861,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1754718840644178171, guid: 89b99c874e702924393718eb8a79b94c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 1754718840644178171, guid: 89b99c874e702924393718eb8a79b94c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: -54
       objectReference: {fileID: 0}
     - target: {fileID: 1754718840644178171, guid: 89b99c874e702924393718eb8a79b94c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

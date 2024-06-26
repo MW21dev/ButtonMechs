@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
 	public GameObject shopPanel;
 	public GameObject buttonsPanel;
 	public GameObject raycastBlock;
+	public GameObject winScreen;
 
 	public event Action OnShopEnter;
 	public event Action OnLaunchLevel;
@@ -51,6 +52,7 @@ public class LevelManager : MonoBehaviour
 
     public bool isInLevel;
 	public bool isInShop;
+	private bool cleared;
 
 	
 	
@@ -108,12 +110,13 @@ public class LevelManager : MonoBehaviour
 
 
 
-		if(GameManager.Instance.enemies.Count <= 0 && isInLevel)
+		if(GameManager.Instance.enemies.Count <= 0 && isInLevel && !cleared)
 		{
-			Invoke("EndLevel", 0.5f);
+			Invoke("EndLevel", 1.5f);
+			cleared = true;
 		}
 
-		if (isInLevel)
+		if (isInLevel && !cleared)
 		{
 			buttonsPanel.GetComponent<CanvasGroup>().alpha = 1f;
 			buttonsPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -166,25 +169,32 @@ public class LevelManager : MonoBehaviour
             OnLaunchLevel?.Invoke();
             SetMap(0);
             GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
+			cleared = false;
         }
 		else
 		{
             int rnd = UnityEngine.Random.Range(1, levels.Length - 1);
             OnLaunchLevel?.Invoke();
             SetMap(rnd);
+            GameManager.Instance.UpdateDiscard(GameManager.Instance.discardList.Count);
             GameManager.Instance.DrawButton(PlayerStats.Instance.drawCount);
+			SoundManager.Instance.PlayMusicSound(0);
+			cleared = false;
         }
-		
 
+		
 	}
 
 	public void EndLevel()
 	{
-		isInLevel = false;
-		stage = levelStage.shop;
-		GameManager.Instance.UpdateDiscard(GameManager.Instance.discardList.Count);
+        winScreen.GetComponent<CanvasGroup>().alpha = 1f;
+        winScreen.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        whiteMapCover.SetActive(true);
 
-		foreach(var child in transform.Cast<Transform>())
+		SoundManager.Instance.StopMusic();
+		SoundManager.Instance.PlayUISound(8);
+
+        foreach (var child in transform.Cast<Transform>())
 		{
 			Destroy(child.gameObject);
 
@@ -203,8 +213,20 @@ public class LevelManager : MonoBehaviour
 			}
 		}
 
-		GameManager.Instance.isUsed = false;
+        
+        GameManager.Instance.isUsed = false;
 	}
+
+	public void EndLevelGoToShop()
+	{
+        
+		SoundManager.Instance.PlayUISound(0);
+		isInLevel = false;
+        stage = levelStage.shop;
+        winScreen.GetComponent<CanvasGroup>().alpha = 0f;
+        winScreen.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        
+    }
 
 	public void OpenShop()
 	{
@@ -221,6 +243,8 @@ public class LevelManager : MonoBehaviour
 		}
 
 		OnShopEnter?.Invoke();
+        GameManager.Instance.UpdateDiscard(GameManager.Instance.discardList.Count);
+
 	}
 
 	public void ExitShop()
@@ -228,10 +252,12 @@ public class LevelManager : MonoBehaviour
 		isInShop = false;
 		stage = levelStage.level;
 		level += 1;
+        GameManager.Instance.UpdateDiscard(GameManager.Instance.discardList.Count);
 		Invoke("CloseShopPanels", 0.1f);
-	}
 
-	public void CloseShopPanels()
+    }
+
+    public void CloseShopPanels()
 	{
 		
 		shopPanel.GetComponent<CanvasGroup>().alpha = 0f;

@@ -14,7 +14,7 @@ public class ModuleBloodyMoney : AbilityModule
     }
     private void OnDestroy()
     {
-
+        EnemyBase.OnEnemyDestroy -= EnemyDestroyed;
     }
 
     public new void Update()
@@ -50,7 +50,7 @@ public class ModuleBloodyMoney : AbilityModule
             {
                 EnemyBase en = enemy.GetComponent<EnemyBase>();
 
-                if (!isUsed)
+                if (!isUsed && inShop)
                 {
                     EnemyBase.OnEnemyDestroy += EnemyDestroyed;
                     isUsed = true;
@@ -64,7 +64,7 @@ public class ModuleBloodyMoney : AbilityModule
     {
         if (!inShop)
         {
-            PlayerStats.Instance.playerCurrentMoney += (int)0.5f;
+            PlayerStats.Instance.playerCurrentMoney += 1;
             
         }
     }

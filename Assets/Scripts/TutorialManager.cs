@@ -1,6 +1,8 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class TutorialManager : MonoBehaviour
 {
@@ -22,7 +24,7 @@ public class TutorialManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		blur.SetActive(true);
+		blur.gameObject.SetActive(true);
 	}
 
 	private void Update()
@@ -41,11 +43,8 @@ public class TutorialManager : MonoBehaviour
 			}
 		}
 
-
-		if (popUpIndex == popUps.Length)
-		{
-			blur.SetActive(false);
-		}
+		
+		
 	}
 
 	public void NextPopUp()
@@ -57,7 +56,21 @@ public class TutorialManager : MonoBehaviour
 		{
 			GameManager.Instance.isTutorial = 1;
 			SaveScript.Instance.SaveGame();
+			
 		}
-		
-	}
+
+        if (popUpIndex == 0)
+        {
+            blur.GetComponent<CanvasGroup>().alpha = 1f;
+        }
+        else if (popUpIndex < popUps.Length - 1)
+        {
+            blur.GetComponent<CanvasGroup>().alpha = 0.2f;
+        }
+		else if( popUpIndex == popUps.Length)
+		{
+			blur.SetActive(false);
+		}
+
+    }
 }

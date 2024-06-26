@@ -247,6 +247,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5378725282229745552, guid: 25e43c262de440b45b289e667b5141aa, type: 3}
+      propertyPath: isShop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378725282229745552, guid: 25e43c262de440b45b289e667b5141aa, type: 3}
       propertyPath: buyButton
       value: 
       objectReference: {fileID: 4572270644867116774}

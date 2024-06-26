@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 5178852476957279975}
   - component: {fileID: 3397692001195370298}
   - component: {fileID: 2582355160823931701}
+  - component: {fileID: 351138194913046046}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -151,6 +152,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &351138194913046046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2752282577513928785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d39f3abf4fb24c8654fa4b3bd3066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+  speed: 0.5
 --- !u!1 &6455379808612011324
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: In the game there are many types of buttons
+  m_text: There are many types of buttons
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

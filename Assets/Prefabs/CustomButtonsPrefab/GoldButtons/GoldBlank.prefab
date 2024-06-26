@@ -132,7 +132,7 @@ MonoBehaviour:
   timeLeft: 0
   abilityUsed: 0
   abilityName: Blank
-  abilityPrice: 4
+  abilityPrice: 3
   abilityDescription: Do nothing
   abilityTypeDescription: When played gain 1$
   type: 4

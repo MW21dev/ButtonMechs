@@ -1607,6 +1607,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3539009586495585146, guid: e81270fb3b2b21a43aac0583519ef829, type: 3}
+      propertyPath: isShop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3568598489508409394, guid: e81270fb3b2b21a43aac0583519ef829, type: 3}
       propertyPath: m_Name
       value: MenuSlot (1)

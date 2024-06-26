@@ -42,6 +42,7 @@ public class AbilityButtonScript : MonoBehaviour, IPointerEnterHandler, IPointer
 		gold,
 		rainbow,
 		poker,
+		glass,
 	}
 
 	public Category type;

@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
   imageIcon: {fileID: 1780542084713535103}
   parentAfterDrag: {fileID: 0}
   previousParent: {fileID: 0}
-  draggable: 1
+  draggable: 0
   isDraged: 0
 --- !u!50 &8378260692058156921
 Rigidbody2D:

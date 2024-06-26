@@ -16,7 +16,7 @@ public class ModuleGoldenRocks : AbilityModule
     }
     private void OnDestroy()
     {
-        
+        ObjectScript.OnRockDestroy -= RockDestroyed;
     }
 
     public new void Update()
@@ -46,19 +46,23 @@ public class ModuleGoldenRocks : AbilityModule
             abilityText.SetActive(false);
         }
 
-        foreach(var Rock in GameObject.FindGameObjectsWithTag("Border"))
+        if (!inShop)
         {
-            ObjectScript obj = Rock.GetComponent<ObjectScript>();
-            if (!obj.mapBorder)
+            foreach (var Rock in GameObject.FindGameObjectsWithTag("Border"))
             {
-                if (!isUsed)
+                ObjectScript obj = Rock.GetComponent<ObjectScript>();
+                if (!obj.mapBorder)
                 {
-                    ObjectScript.OnRockDestroy += RockDestroyed;
-                    isUsed = true;
-                }
+                    if (!isUsed && !inShop)
+                    {
+                        ObjectScript.OnRockDestroy += RockDestroyed;
+                        isUsed = true;
+                    }
 
+                }
             }
         }
+        
     }
 
     void RockDestroyed()

@@ -7,7 +7,11 @@ public class ModuleDoubleDraw : AbilityModule
 {
     public new void Update()
     {
-        PlayerStats.Instance.drawCount = 2;
+        if (!inShop)
+        {
+            PlayerStats.Instance.drawCount = 2;
+        }
+       
         
         if (isHovering)
         {
