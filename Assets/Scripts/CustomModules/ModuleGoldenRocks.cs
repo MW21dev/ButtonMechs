@@ -7,13 +7,7 @@ using UnityEngine;
 public class ModuleGoldenRocks : AbilityModule
 {
     bool isUsed;
-    private void Start()
-    {
-        
-
-        description.text = $"{abilityName}" + "\n" + "\n " + $"{abilityDescription}";
-        abilityText.SetActive(false);
-    }
+    
     private void OnDestroy()
     {
         ObjectScript.OnRockDestroy -= RockDestroyed;
@@ -51,6 +45,7 @@ public class ModuleGoldenRocks : AbilityModule
             foreach (var Rock in GameObject.FindGameObjectsWithTag("Border"))
             {
                 ObjectScript obj = Rock.GetComponent<ObjectScript>();
+
                 if (!obj.mapBorder)
                 {
                     if (!isUsed && !inShop)

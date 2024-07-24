@@ -11,6 +11,7 @@ public class BuyText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject buyText;
     public TMP_Text description;
     public TMP_Text price;
+    public TMP_Text priceVisable;
 
     public bool isHovering = false;
     public float timeToWait = 0.5f;
@@ -24,6 +25,7 @@ public class BuyText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         description.text = buyDescription;
         buyText.SetActive(false);
         price.text = "999" + "$";
+        priceVisable.text = "999" + "$";
 
         var shopType = shopSlot.GetComponent<ShopSlot>().type;
 
@@ -45,10 +47,12 @@ public class BuyText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (shopType == ShopSlot.Type.button)
             {
                 price.text = shopSlot.transform.GetChild(0).GetComponent<AbilityButtonScript>().abilityPrice.ToString() + "$";
+                priceVisable.text = shopSlot.transform.GetChild(0).GetComponent<AbilityButtonScript>().abilityPrice.ToString() + "$";
             }
             else if (shopType == ShopSlot.Type.module)
             {
                 price.text = shopSlot.transform.GetChild(0).GetComponent<AbilityModule>().abilityPrice.ToString() + "$";
+                priceVisable.text = shopSlot.transform.GetChild(0).GetComponent<AbilityModule>().abilityPrice.ToString() + "$";
             }
 
 

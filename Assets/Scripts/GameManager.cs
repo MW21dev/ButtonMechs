@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using System.Threading;
 
 
 
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
 
 	public TMP_Text deckCountText;
 	public TMP_Text discardCountText;
+	public TMP_Text gameTimer;
 
 
 	public static GameManager Instance;
@@ -59,13 +61,20 @@ public class GameManager : MonoBehaviour
 	public bool isUsed;
 
 	public int maxEnemyActions;
+	public float gameTime;
 
 	public int isTutorial;
 
 	public int gameSpeed;
 
+	[SerializeField]
+	private bool silverButtonIsUsed;
+	[SerializeField]
+	private float silverWait;
 
-	private void Awake()
+
+
+    private void Awake()
 	{
 		if(Instance == null)
 		{
@@ -101,10 +110,24 @@ public class GameManager : MonoBehaviour
 
 		CreateStartDeck();
 		UpdateDeck();
+		gameTime = 0f;
 	}
 
 	private void Update()
 	{
+		if(LevelManager.Instance.level != 5)
+		{
+            gameTime += Time.deltaTime;
+
+        }
+        
+
+        float minutes = MathF.Floor(gameTime / 60);
+		float seconds = MathF.Floor(gameTime % 60);
+
+
+		gameTimer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+		
 		if (playerTurn)
 		{
 			enemyTurn = false;
@@ -135,6 +158,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+		if (silverButtonIsUsed)
+		{
+			silverWait -= Time.deltaTime;
+		}
 		
 
 		deckCount = deckList.Count;
@@ -205,7 +233,7 @@ public class GameManager : MonoBehaviour
 
    
 
-	public void UseButton(int buttonNumber)
+	public async void UseButton(int buttonNumber)
 	{
 		ButtonSlot slot;
 
@@ -241,7 +269,31 @@ public class GameManager : MonoBehaviour
                 ability.gameObject.transform.SetParent(discard.transform, false);
                 slot.eqquipedButton = null;
 				break;
+			case AbilityButtonScript.Category.silver:
+
+				StartCoroutine(SilverRepeat(ability, slot));
+				
+				
+				break;
         }
+	}
+
+	private IEnumerator SilverRepeat(AbilityButtonScript ability, ButtonSlot slot)
+	{
+		for (int i = -1; i < 1; i++)
+		{
+			if(i == 0)
+			{
+                ability.UseAbility(PlayerStats.Instance);
+                discardList.Add(ability);
+                ability.gameObject.transform.SetParent(discard.transform, false);
+                slot.eqquipedButton = null;
+            }
+			
+			yield return new WaitForSeconds(ability.abilityTime / 2);
+		}
+
+		
 	}
 
 

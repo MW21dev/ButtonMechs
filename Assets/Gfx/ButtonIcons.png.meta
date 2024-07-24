@@ -93,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -205,7 +218,7 @@ TextureImporter:
       name: ButtonIcons_5
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 112
         width: 16
         height: 16
@@ -226,7 +239,7 @@ TextureImporter:
       name: ButtonIcons_6
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 112
         width: 16
         height: 16
@@ -247,8 +260,8 @@ TextureImporter:
       name: ButtonIcons_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 112
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -268,7 +281,7 @@ TextureImporter:
       name: ButtonIcons_8
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 96
         width: 16
         height: 16
@@ -289,7 +302,7 @@ TextureImporter:
       name: ButtonIcons_9
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 96
         width: 16
         height: 16
@@ -310,7 +323,7 @@ TextureImporter:
       name: ButtonIcons_10
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 96
         width: 16
         height: 16
@@ -331,7 +344,7 @@ TextureImporter:
       name: ButtonIcons_11
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 96
         width: 16
         height: 16
@@ -352,7 +365,7 @@ TextureImporter:
       name: ButtonIcons_12
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 96
         width: 16
         height: 16
@@ -373,7 +386,7 @@ TextureImporter:
       name: ButtonIcons_13
       rect:
         serializedVersion: 2
-        x: 112
+        x: 80
         y: 96
         width: 16
         height: 16
@@ -394,8 +407,8 @@ TextureImporter:
       name: ButtonIcons_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 96
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -415,8 +428,8 @@ TextureImporter:
       name: ButtonIcons_15
       rect:
         serializedVersion: 2
-        x: 16
-        y: 80
+        x: 112
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -436,7 +449,7 @@ TextureImporter:
       name: ButtonIcons_16
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 80
         width: 16
         height: 16
@@ -457,7 +470,7 @@ TextureImporter:
       name: ButtonIcons_17
       rect:
         serializedVersion: 2
-        x: 48
+        x: 16
         y: 80
         width: 16
         height: 16
@@ -478,7 +491,7 @@ TextureImporter:
       name: ButtonIcons_18
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 80
         width: 16
         height: 16
@@ -499,8 +512,8 @@ TextureImporter:
       name: ButtonIcons_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 48
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -520,8 +533,8 @@ TextureImporter:
       name: ButtonIcons_20
       rect:
         serializedVersion: 2
-        x: 16
-        y: 64
+        x: 64
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -541,8 +554,8 @@ TextureImporter:
       name: ButtonIcons_21
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 80
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -562,7 +575,7 @@ TextureImporter:
       name: ButtonIcons_22
       rect:
         serializedVersion: 2
-        x: 48
+        x: 0
         y: 64
         width: 16
         height: 16
@@ -583,7 +596,7 @@ TextureImporter:
       name: ButtonIcons_23
       rect:
         serializedVersion: 2
-        x: 64
+        x: 16
         y: 64
         width: 16
         height: 16
@@ -604,8 +617,8 @@ TextureImporter:
       name: ButtonIcons_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
+        x: 32
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -625,8 +638,8 @@ TextureImporter:
       name: ButtonIcons_25
       rect:
         serializedVersion: 2
-        x: 16
-        y: 48
+        x: 48
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -646,8 +659,8 @@ TextureImporter:
       name: ButtonIcons_26
       rect:
         serializedVersion: 2
-        x: 32
-        y: 48
+        x: 64
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -667,8 +680,8 @@ TextureImporter:
       name: ButtonIcons_27
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
+        x: 80
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -688,7 +701,7 @@ TextureImporter:
       name: ButtonIcons_28
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 48
         width: 16
         height: 16
@@ -709,8 +722,8 @@ TextureImporter:
       name: ButtonIcons_29
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 16
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -730,8 +743,8 @@ TextureImporter:
       name: ButtonIcons_30
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
+        x: 32
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -751,8 +764,8 @@ TextureImporter:
       name: ButtonIcons_31
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 48
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -772,8 +785,8 @@ TextureImporter:
       name: ButtonIcons_32
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
+        x: 64
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -793,8 +806,8 @@ TextureImporter:
       name: ButtonIcons_33
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 80
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -815,7 +828,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -836,7 +849,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -857,7 +870,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -878,7 +891,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -899,7 +912,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -919,8 +932,8 @@ TextureImporter:
       name: ButtonIcons_39
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 80
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -940,8 +953,8 @@ TextureImporter:
       name: ButtonIcons_40
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -961,8 +974,8 @@ TextureImporter:
       name: ButtonIcons_41
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 16
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -982,8 +995,8 @@ TextureImporter:
       name: ButtonIcons_42
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
+        x: 32
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -1003,8 +1016,8 @@ TextureImporter:
       name: ButtonIcons_43
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 48
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -1016,6 +1029,216 @@ TextureImporter:
       bones: []
       spriteID: 0d187f2e7a9a1ce47bdabfa7554aad62
       internalID: -1780287335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_44
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61c5f2163daa49847a0b630782a919f1
+      internalID: 578682846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_45
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1fcc492c2ca9d4a94108077d91ea4d
+      internalID: 1237366055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24c28faef8c925443b62a916401a8d94
+      internalID: 175578494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_47
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c62009044e7454d8271c7e16faad94
+      internalID: 824196413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_48
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e6c0ee435243c24d845e9b6512e4728
+      internalID: -1785491411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_49
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9babf76e0921c1c499b545e7617e86ad
+      internalID: 656837854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_50
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078e8a94e469ac7489e6558b86626cac
+      internalID: -333541618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_51
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc193ebbaf0d814e907c4dcab28860a
+      internalID: -989938028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_52
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d780b4e98cc641e46a1493c02d80de4d
+      internalID: -1388175379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonIcons_53
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d99d25f15a9df3343b2b3b0ff7676acf
+      internalID: 614174956
       vertices: []
       indices: 
       edges: []
@@ -1070,7 +1293,17 @@ TextureImporter:
       ButtonIcons_41: -1582542909
       ButtonIcons_42: 1245729760
       ButtonIcons_43: -1780287335
+      ButtonIcons_44: 578682846
+      ButtonIcons_45: 1237366055
+      ButtonIcons_46: 175578494
+      ButtonIcons_47: 824196413
+      ButtonIcons_48: -1785491411
+      ButtonIcons_49: 656837854
       ButtonIcons_5: 393364278
+      ButtonIcons_50: -333541618
+      ButtonIcons_51: -989938028
+      ButtonIcons_52: -1388175379
+      ButtonIcons_53: 614174956
       ButtonIcons_6: 794392493
       ButtonIcons_7: 190679289
       ButtonIcons_8: 8541267

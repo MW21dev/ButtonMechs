@@ -73,10 +73,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826e30db556240448b85df447d8767b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  imageBody: {fileID: 0}
+  imageIcon: {fileID: 0}
   parentAfterDrag: {fileID: 0}
   previousParent: {fileID: 0}
   draggable: 1
+  isDraged: 0
 --- !u!1 &2451673569778766620
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +232,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 301938033, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -305,7 +307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 301938033, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
+  m_Sprite: {fileID: 1394566212, guid: 3538679c69edfff4db50f746398a59b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -61,6 +61,7 @@ public class EnemyBase : MonoBehaviour
     public Vector3 testRotation;
 
     public static event Action OnEnemyDestroy;
+
     private void Awake()
     {
         enemyinfoPanel = GameObject.Find("EnemyPanelInfo");
@@ -247,8 +248,46 @@ public class EnemyBase : MonoBehaviour
 
     }
 
+    public void CheckMove()
+    {
+        Vector2 shotPP = Vector3Extension.AsVector2(shotPoint.transform.position);
+
+        RaycastHit2D hitItem = Physics2D.Raycast(shotPP, rayCheck, rayRange, mask);
+        //RaycastHit2D seePlayer = Physics2D.Raycast(shotPP, viewCheck, viewRange, viewMask);
+
+        Debug.DrawRay(shotPP, rayCheck, Color.red);
+        Debug.DrawRay(shotPP, viewCheck, Color.yellow);
+
+
+        if (hitItem)
+        {
+            Debug.Log(hitItem.collider.gameObject.name);
+            if (hitItem.collider.gameObject.tag == "Border")
+            {
+                Debug.Log("cant move");
+                canMove = false;
+            }
+            else if (hitItem.collider.gameObject.tag == "Enemy")
+            {
+                Debug.Log("cant move");
+                canMove = false;
+            }
+        }
+        else
+        {
+            Debug.Log("can move");
+            canMove = true;
+        }
+
+
+
+        isFacingPlayer = Physics2D.Raycast(shotPP, viewCheck, viewRange, viewMask);
+    }
+
+   
     public virtual void EnemyNextAction()
     {
+
         if (enemyActions > 0)
         {
             int rnd = UnityEngine.Random.Range(0, enemyAbilitiesCount);
@@ -278,4 +317,6 @@ public class EnemyBase : MonoBehaviour
             Invoke("EnemyNextAction", 0.5f);
         }
     }
+
+
 }

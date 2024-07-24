@@ -72,4 +72,9 @@ public class MainMenuScript : MonoBehaviour
         SoundManager.Instance.PlayUISound(0);
 
     }
+
+    public void ResetSave()
+    {
+        SaveScript.Instance.ResetSave();
+    }
 }

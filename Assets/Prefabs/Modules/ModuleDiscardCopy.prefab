@@ -196,7 +196,7 @@ MonoBehaviour:
   abilityUsed: 0
   abilityName: Discard Copy
   abilityPrice: 6
-  abilityDescription: The first button discarded by discarding on your turn is copied
+  abilityDescription: Add a copy of your first discarded button to discard
 --- !u!1 &6342292983922788179
 GameObject:
   m_ObjectHideFlags: 0

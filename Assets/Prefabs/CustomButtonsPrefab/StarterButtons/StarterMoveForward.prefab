@@ -236,6 +236,7 @@ MonoBehaviour:
   isHovering: 0
   timeToWait: 0.5
   abilityTime: 1
+  timeLeft: 0
   abilityUsed: 0
   abilityName: Move
   abilityPrice: 0
@@ -486,7 +487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2072039796, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
+  m_Sprite: {fileID: -1176557177, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -561,7 +562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2111382689, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
+  m_Sprite: {fileID: 175578494, guid: 8198370032b6314429e3bda4b4121fde, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

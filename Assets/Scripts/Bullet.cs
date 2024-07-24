@@ -10,6 +10,9 @@ public class Bullet : MonoBehaviour
 
     public bool enemyBullet;
     public bool playerbullet;
+    public bool cursed;
+
+    public AbilityButtonScript curseButton;
 
     private void Awake()
     {
@@ -36,7 +39,14 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && enemyBullet)
         {
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
-            
+
+            if (cursed && curseButton != null)
+            {
+                var cButton = Instantiate(curseButton);
+                cButton.transform.SetParent(GameManager.Instance.deck.transform, false);
+                GameManager.Instance.UpdateDeck();
+            }
+
             playerStats.GetHit(1);
             Destroy(gameObject);
         }

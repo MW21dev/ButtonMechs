@@ -34,6 +34,13 @@ public class ButtonSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+        var d = eventData.pointerDrag;
+
+        if(d.gameObject.GetComponent<DragDrop>().draggable == false)
+        {
+            return;
+        }
+        
         if (isShop)
         {
             return;

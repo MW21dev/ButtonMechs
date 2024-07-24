@@ -22,9 +22,12 @@ public class LevelManager : MonoBehaviour
 	public GameObject buttonsPanel;
 	public GameObject raycastBlock;
 	public GameObject winScreen;
+	public GameObject victoryScreen;
 
 	public event Action OnShopEnter;
 	public event Action OnLaunchLevel;
+	public event Action OnEndLevel;
+	public event Action MapCreated;
 
 	[Header("MapGround")]
 	public GameObject[] groundPrefab;
@@ -47,6 +50,7 @@ public class LevelManager : MonoBehaviour
 	public GameObject orbTankPrefab;
 	public GameObject sowerTankPrefab;
 	public GameObject shieldTankPrefab;
+	public GameObject cursedTankPrefab;
 
 
 
@@ -173,7 +177,7 @@ public class LevelManager : MonoBehaviour
         }
 		else
 		{
-            int rnd = UnityEngine.Random.Range(1, levels.Length - 1);
+            int rnd = UnityEngine.Random.Range(1, levels.Length);
             OnLaunchLevel?.Invoke();
             SetMap(rnd);
             GameManager.Instance.UpdateDiscard(GameManager.Instance.discardList.Count);
@@ -187,34 +191,52 @@ public class LevelManager : MonoBehaviour
 
 	public void EndLevel()
 	{
-        winScreen.GetComponent<CanvasGroup>().alpha = 1f;
-        winScreen.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        whiteMapCover.SetActive(true);
-
-		SoundManager.Instance.StopMusic();
-		SoundManager.Instance.PlayUISound(8);
-
-        foreach (var child in transform.Cast<Transform>())
+		if(level != 5)
 		{
-			Destroy(child.gameObject);
+            winScreen.GetComponent<CanvasGroup>().alpha = 1f;
+            winScreen.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            winScreen.GetComponent<CanvasGroup>().interactable = true;
 
-		}
 
-		foreach(var obj in GameObject.FindGameObjectsWithTag("PickUp"))
+            whiteMapCover.SetActive(true);
+
+            SoundManager.Instance.StopMusic();
+            SoundManager.Instance.PlayUISound(8);
+
+            foreach (var child in transform.Cast<Transform>())
+            {
+                Destroy(child.gameObject);
+
+            }
+
+            foreach (var obj in GameObject.FindGameObjectsWithTag("PickUp"))
+            {
+                Destroy(obj);
+            }
+
+            foreach (var obj in GameObject.FindGameObjectsWithTag("Border"))
+            {
+                if (!obj.GetComponent<ObjectScript>().mapBorder)
+                {
+                    Destroy(obj);
+                }
+            }
+
+
+            GameManager.Instance.isUsed = false;
+        }
+        else if (level == 5)
 		{
-			Destroy(obj);
-		}
+            victoryScreen.GetComponent<CanvasGroup>().alpha = 1f;
+            victoryScreen.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            whiteMapCover.SetActive(true);
+            SoundManager.Instance.StopMusic();
+            SoundManager.Instance.PlayUISound(8);
 
-		foreach(var obj in GameObject.FindGameObjectsWithTag("Border"))
-		{
-			if (!obj.GetComponent<ObjectScript>().mapBorder)
-			{
-				Destroy(obj);
-			}
-		}
+			
+        }
 
-        
-        GameManager.Instance.isUsed = false;
+		OnEndLevel?.Invoke();
 	}
 
 	public void EndLevelGoToShop()
@@ -339,10 +361,15 @@ public class LevelManager : MonoBehaviour
                 case ScriptableObjectMap.MapEnemies.Type.ShieldTank:
                     Instantiate(shieldTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
                     break;
+                case ScriptableObjectMap.MapEnemies.Type.CursedTank:
+                    Instantiate(cursedTankPrefab, new Vector3(obj.pos.x - MAP_POSITION_MOD, obj.pos.y + MAP_POSITION_MOD_Y, 0f), Quaternion.Euler(new Vector3(0f, 0f, (float)obj.rotType)));
+                    break;
             }
 		}
 
 		GameManager.Instance.CountEnemies();
+
+		MapCreated?.Invoke();
 	}
 
 

@@ -12,8 +12,8 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 	public Transform parentAfterDrag;
 	public Transform previousParent;
 	private CanvasGroup canvasGroup;
-	
 
+	
 	public bool draggable = true;
 	public bool isDraged = false;
 	
@@ -40,7 +40,8 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		if (draggable)
+        
+        if (draggable)
 		{
 			isDraged = true;
             canvasGroup.alpha = 0.6f;
@@ -62,6 +63,8 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 
 	public void OnDrag(PointerEventData eventData)
 	{
+		
+		
 		if (draggable)
 		{
 			isDraged = true;
@@ -70,12 +73,13 @@ public class DragDrop : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
 			
 		}
 
-       
+		Debug.Log($"Im dragging {gameObject.name}");
     }
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		if (draggable)
+
+        if (draggable)
 		{
 			isDraged = false;
             transform.SetParent(parentAfterDrag);

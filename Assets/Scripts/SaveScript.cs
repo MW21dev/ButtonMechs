@@ -39,7 +39,12 @@ public class SaveScript : MonoBehaviour
 
 	public void ResetSave()
 	{
-		GameManager.Instance.isTutorial = 0;
-		SaveGame();
+        GameManager.Instance.isTutorial = 0;
+        SaveGame();
+    }
+
+	public void RestartAll()
+	{
+		PlayerPrefs.DeleteAll();
 	}
 }
